@@ -1,11 +1,14 @@
 Use Assignment4
 
 Drop SEQUENCE IF EXISTS Customer_AccountNumber_Seq;
+DROP SEQUENCE IF EXISTS Movie_MovieID_Seq;
 
 DROP TABLE IF EXISTS CustomerPhone;
 DROP TABLE IF EXISTS Customer;
 DROP TABLE IF EXISTS EmployeePhone;
 DROP TABLE IF EXISTS Employee;
+DROP TABLE IF EXISTS Movie;
+DROP TABLE IF EXISTS QueueUp;
 
 CREATE TABLE Employee (
 EmployeeID INT IDENTITY(1,1),
@@ -54,4 +57,27 @@ PhoneNum NCHAR(10) NOT NULL,
 PhoneType VARCHAR(10) NOT NULL,
 PRIMARY KEY( CustomerID, PhoneNum),
 FOREIGN KEY ( CustomerID ) REFERENCES Customer( CustomerID ),
+
 );
+
+CREATE TABLE Movie (
+MovieID INT NOT NULL,
+MovieName VARCHAR(40) NOT NULL,
+MovieType VARCHAR(10) NOT NULL
+	CHECK( MovieType='Comedy' or MovieType='Drama' or MovieType='Action' or MovieType='Adventure' 
+	or MovieType='Scifi' or MovieType='Horror' or MovieType='Romance' or MovieType='Thriller'),
+Fee NUMERIC(6,2) NOT NULL,
+NumOfCopy INT NOT NULL,
+PRIMARY KEY( MovieID )
+);
+
+CREATE TABLE QueueUP (
+MID INT NOT NULL,
+CID INT NOT NULL,
+SortOrder INT NOT NULL,
+PRIMARY KEY (MID, CID),
+FOREIGN KEY (MID) REFERENCES Movie(MovieID),
+FOREIGN KEY (CID) REFERENCES Customer(CustomerID)
+);
+
+CREATE SEQUENCE Movie_MovieID_Seq START WITH 1000 INCREMENT BY 1;
