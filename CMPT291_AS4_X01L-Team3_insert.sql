@@ -1,5 +1,7 @@
 USE Assignment4;
 
+DELETE FROM AppearedIn;
+DELETE FROM Actor;
 DELETE EmployeePhone;
 DELETE Employee;
 DELETE CustomerPhone;
@@ -25,3 +27,33 @@ INSERT INTO Employee (SSN, LastName, FirstName, Address, City, State, ZipCode, S
 INSERT INTO EmployeePhone (EmployeeID, PhoneNum, PhoneType)
 	VALUES( (SELECT EmployeeID FROM Employee WHERE SSN = '123456789'),
 		'7807635232', 'Home' )
+
+INSERT INTO Actor (ActorName, Gender, DoB)
+	VALUES ('Chris Evans', 'M', '1981-06-13');
+
+INSERT INTO Actor (ActorName, Gender, DoB)
+	VALUES ('Scarlett Johansson', 'F', '1984-11-22');
+
+INSERT INTO Actor (ActorName, Gender, DoB)
+	VALUES ('Tom Cruise', 'M', '1962-07-03');
+
+INSERT INTO Actor (ActorName, Gender, DoB)
+	VALUES ('Miles Teller', 'M', '1987-02-20');
+
+INSERT INTO AppearedIn (ActorID, MovieID)
+	VALUES (
+		(SELECT ActorID FROM Actor WHERE ActorName = 'Chris Evans'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'The Fantastic Four: First Steps')
+	);
+
+INSERT INTO AppearedIn (ActorID, MovieID)
+	VALUES (
+		(SELECT ActorID FROM Actor WHERE ActorName = 'Tom Cruise'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Top Gun: Maverick')
+	);
+
+INSERT INTO AppearedIn (ActorID, MovieID)
+VALUES (
+    (SELECT ActorID FROM Actor WHERE ActorName = 'Miles Teller'),
+    (SELECT MovieID FROM Movie WHERE MovieName = 'Top Gun: Maverick')
+);
