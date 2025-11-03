@@ -20,6 +20,7 @@ Return_Date CHAR(10),
 Cust_rate_movie INT NULL,
 PRIMARY KEY( OrderID ),
 );
+CREATE SEQUENCE OrderID_Seq start with 1000 INCREMENT by 1;
 
 CREATE TABLE Rate_Actor (
 AID INT NOT NULL,
@@ -117,6 +118,7 @@ FOREIGN KEY (MovieID) REFERENCES Movie(MovieID)
 );
 
 CREATE SEQUENCE Movie_MovieID_Seq START WITH 1000 INCREMENT BY 1;
+
 
 
 
