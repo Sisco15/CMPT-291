@@ -17,8 +17,8 @@ DROP TABLE IF EXISTS Rate_Actor;
 
 CREATE TABLE Order_Req (
 OrderID INT NOT NULL,
-Checkout_Date CHAR(10),
-Return_Date CHAR(10) NULL,
+Checkout_Date DATE DEFAULT CURRENT_DATE,,
+Return_Date DATE NULL,
 Cust_rate_movie INT NULL,
 MID INT NOT NULL,
 CID INT NOT NULL,
@@ -126,6 +126,7 @@ FOREIGN KEY (MovieID) REFERENCES Movie(MovieID)
 );
 
 CREATE SEQUENCE Movie_MovieID_Seq START WITH 1000 INCREMENT BY 1;
+
 
 
 
