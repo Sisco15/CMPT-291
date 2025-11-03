@@ -7,6 +7,14 @@ DELETE Employee;
 DELETE CustomerPhone;
 DELETE Customer;
 DELETE Movie;
+DELETE Order_Req;
+
+INSERT INTO Order_Req (OrderID, Checkout_Date, Return_Date, Cust_rate_movie, MID, CID, EID)
+	VALUES( NEXT VALUE FOR OrderID_Seq, '2000-01-01', '2000-01-22', 5.0, 1222, 1224,4000);
+
+INSERT INTO Order_Req (OrderID, Checkout_Date, Return_Date, Cust_rate_movie, MID, CID, EID)
+	VALUES( NEXT VALUE FOR OrderID_Seq, '2000-09-09', '2000-10-31', 9.0, 1243, 1234,3452);
+
 
 INSERT INTO Movie (MovieID, MovieName, MovieType, Fee, NumOfCopy)
 	VALUES( NEXT VALUE FOR Movie_MovieID_Seq, 'The Fantastic Four: First Steps', 'Action', 5.0, 10);
