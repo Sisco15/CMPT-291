@@ -18,9 +18,19 @@ namespace CMPT291
         {
             InitializeComponent();
 
-            String connectionString = "Server = DESKTOP-LGGJQU9; Database = CMPT291_AS2; Trusted_Connection = true;";
+            //String connectionString = "user id=group3;" + "password=group3pass;" + "server=localhost;" + "database=CMPT291_Proj;";
 
-            SqlConnection myConnection = new SqlConnection(connectionString); // Timeout in seconds
+
+
+
+
+            //SqlConnection myConnection = new SqlConnection(connectionString); // Timeout in seconds
+            SqlConnection myConnection = new SqlConnection("user id=group3;" + // Username
+                                         "password=group3pass;" + // Password
+                                         "server=localhost;" + // IP for the server
+                                                               //"Trusted_Connection=yes;" +
+                                         "database=CMPT291_proj; " + // Database to connect to
+                                         "connection timeout=30"); // Timeout in seconds 
 
             try
             {
