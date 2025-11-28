@@ -36,7 +36,7 @@
             cityBox = new TextBox();
             addressBox = new TextBox();
             emailBox = new TextBox();
-            nameBox = new TextBox();
+            firstNameBox = new TextBox();
             accountBox = new TextBox();
             modifyButton = new Button();
             back = new Button();
@@ -52,6 +52,7 @@
             CreditCardNum = new DataGridViewTextBoxColumn();
             cardExp = new DataGridViewTextBoxColumn();
             CreditCVV = new DataGridViewTextBoxColumn();
+            lastNameBox = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -73,7 +74,7 @@
             // 
             // cardNum
             // 
-            cardNum.Location = new Point(582, 202);
+            cardNum.Location = new Point(582, 221);
             cardNum.Name = "cardNum";
             cardNum.Size = new Size(143, 27);
             cardNum.TabIndex = 26;
@@ -97,7 +98,7 @@
             // 
             // cityBox
             // 
-            cityBox.Location = new Point(416, 202);
+            cityBox.Location = new Point(67, 308);
             cityBox.Name = "cityBox";
             cityBox.Size = new Size(143, 27);
             cityBox.TabIndex = 23;
@@ -113,19 +114,19 @@
             // 
             // emailBox
             // 
-            emailBox.Location = new Point(233, 202);
+            emailBox.Location = new Point(416, 221);
             emailBox.Name = "emailBox";
             emailBox.Size = new Size(143, 27);
             emailBox.TabIndex = 21;
             emailBox.Text = "Email";
             // 
-            // nameBox
+            // firstNameBox
             // 
-            nameBox.Location = new Point(67, 202);
-            nameBox.Name = "nameBox";
-            nameBox.Size = new Size(143, 27);
-            nameBox.TabIndex = 20;
-            nameBox.Text = "Full Name";
+            firstNameBox.Location = new Point(67, 221);
+            firstNameBox.Name = "firstNameBox";
+            firstNameBox.Size = new Size(143, 27);
+            firstNameBox.TabIndex = 20;
+            firstNameBox.Text = "First Name";
             // 
             // accountBox
             // 
@@ -155,6 +156,7 @@
             back.TabIndex = 30;
             back.Text = "Back";
             back.UseVisualStyleBackColor = false;
+            back.Click += back_Click;
             // 
             // dataGridView1
             // 
@@ -243,11 +245,20 @@
             CreditCVV.Name = "CreditCVV";
             CreditCVV.Width = 125;
             // 
+            // lastNameBox
+            // 
+            lastNameBox.Location = new Point(233, 221);
+            lastNameBox.Name = "lastNameBox";
+            lastNameBox.Size = new Size(143, 27);
+            lastNameBox.TabIndex = 32;
+            lastNameBox.Text = "Last Name";
+            // 
             // Form4
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(lastNameBox);
             Controls.Add(dataGridView1);
             Controls.Add(back);
             Controls.Add(modifyButton);
@@ -259,7 +270,7 @@
             Controls.Add(cityBox);
             Controls.Add(addressBox);
             Controls.Add(emailBox);
-            Controls.Add(nameBox);
+            Controls.Add(firstNameBox);
             Controls.Add(accountBox);
             Name = "Form4";
             Text = "Modify Customer";
@@ -278,7 +289,7 @@
         private TextBox cityBox;
         private TextBox addressBox;
         private TextBox emailBox;
-        private TextBox nameBox;
+        private TextBox firstNameBox;
         private TextBox accountBox;
         private Button modifyButton;
         private Button back;
@@ -294,5 +305,6 @@
         private DataGridViewTextBoxColumn CreditCardNum;
         private DataGridViewTextBoxColumn cardExp;
         private DataGridViewTextBoxColumn CreditCVV;
+        private TextBox lastNameBox;
     }
 }
