@@ -44,10 +44,22 @@
             searchBox = new TextBox();
             modify = new Button();
             tabPage2 = new TabPage();
+            btnRent = new Button();
+            label4 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            label1 = new Label();
+            dgvRented = new DataGridView();
+            dgvQueue = new DataGridView();
+            cmbMovie = new ComboBox();
+            cmbCustomer = new ComboBox();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)CustomerList).BeginInit();
             tabs.SuspendLayout();
             Customer.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvRented).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvQueue).BeginInit();
             SuspendLayout();
             // 
             // CustomerList
@@ -191,13 +203,108 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(btnRent);
+            tabPage2.Controls.Add(label4);
+            tabPage2.Controls.Add(label3);
+            tabPage2.Controls.Add(label2);
+            tabPage2.Controls.Add(label1);
+            tabPage2.Controls.Add(dgvRented);
+            tabPage2.Controls.Add(dgvQueue);
+            tabPage2.Controls.Add(cmbMovie);
+            tabPage2.Controls.Add(cmbCustomer);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(776, 405);
             tabPage2.TabIndex = 1;
-            tabPage2.Text = "tabPage2";
+            tabPage2.Text = "Rental";
             tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // btnRent
+            // 
+            btnRent.Location = new Point(578, 293);
+            btnRent.Margin = new Padding(3, 4, 3, 4);
+            btnRent.Name = "btnRent";
+            btnRent.Size = new Size(168, 89);
+            btnRent.TabIndex = 4;
+            btnRent.Text = "Rent";
+            btnRent.UseVisualStyleBackColor = true;
+            btnRent.Click += btnRent_Click;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(439, 1);
+            label4.Name = "label4";
+            label4.Size = new Size(169, 20);
+            label4.TabIndex = 16;
+            label4.Text = "Customer Rental History";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(0, 159);
+            label3.Name = "label3";
+            label3.Size = new Size(119, 20);
+            label3.TabIndex = 15;
+            label3.Text = "Customer Queue";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(0, 81);
+            label2.Name = "label2";
+            label2.Size = new Size(50, 20);
+            label2.TabIndex = 14;
+            label2.Text = "Movie";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(0, 1);
+            label1.Name = "label1";
+            label1.Size = new Size(72, 20);
+            label1.TabIndex = 13;
+            label1.Text = "Customer";
+            // 
+            // dgvRented
+            // 
+            dgvRented.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvRented.Location = new Point(439, 25);
+            dgvRented.Margin = new Padding(3, 4, 3, 4);
+            dgvRented.Name = "dgvRented";
+            dgvRented.RowHeadersWidth = 51;
+            dgvRented.Size = new Size(331, 222);
+            dgvRented.TabIndex = 12;
+            // 
+            // dgvQueue
+            // 
+            dgvQueue.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvQueue.Location = new Point(0, 183);
+            dgvQueue.Margin = new Padding(3, 4, 3, 4);
+            dgvQueue.Name = "dgvQueue";
+            dgvQueue.RowHeadersWidth = 51;
+            dgvQueue.Size = new Size(360, 222);
+            dgvQueue.TabIndex = 11;
+            // 
+            // cmbMovie
+            // 
+            cmbMovie.FormattingEnabled = true;
+            cmbMovie.Location = new Point(0, 105);
+            cmbMovie.Margin = new Padding(3, 4, 3, 4);
+            cmbMovie.Name = "cmbMovie";
+            cmbMovie.Size = new Size(118, 28);
+            cmbMovie.TabIndex = 10;
+            // 
+            // cmbCustomer
+            // 
+            cmbCustomer.FormattingEnabled = true;
+            cmbCustomer.Location = new Point(0, 25);
+            cmbCustomer.Margin = new Padding(3, 4, 3, 4);
+            cmbCustomer.Name = "cmbCustomer";
+            cmbCustomer.Size = new Size(118, 28);
+            cmbCustomer.TabIndex = 9;
+            cmbCustomer.SelectedIndexChanged += cmbCustomer_SelectedIndexChanged;
             // 
             // Form2
             // 
@@ -211,6 +318,10 @@
             tabs.ResumeLayout(false);
             Customer.ResumeLayout(false);
             Customer.PerformLayout();
+            tabPage2.ResumeLayout(false);
+            tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvRented).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvQueue).EndInit();
             ResumeLayout(false);
         }
 
@@ -233,5 +344,14 @@
         private DataGridViewTextBoxColumn Email;
         private DataGridViewTextBoxColumn Province;
         private DataGridViewTextBoxColumn City;
+        private Label label4;
+        private Label label3;
+        private Label label2;
+        private Label label1;
+        private DataGridView dgvRented;
+        private DataGridView dgvQueue;
+        private ComboBox cmbMovie;
+        private ComboBox cmbCustomer;
+        private Button btnRent;
     }
 }
