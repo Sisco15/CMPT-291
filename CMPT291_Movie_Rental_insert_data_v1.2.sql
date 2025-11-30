@@ -49,14 +49,29 @@ INSERT INTO CustomerPhone (CustomerID, PhoneNum, PhoneType)
 		'7801111111', 'Home' );
 
 
-INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy)
-	VALUES ( 'Die Hard', 'Action', 3.5, 5 );
+INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
+	VALUES ( 'Die Hard', 'Action', 3.5, 5, 3);
 
-INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy)
-	VALUES ('Die Hard 2', 'Action', 4.5, 4 );
+INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
+	VALUES ('Die Hard 2', 'Action', 4.5, 4, 4);
 
-INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy)
-	VALUES ( 'Die Hard 3', 'Action', 5.5, 3 );
+INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
+	VALUES ( 'Die Hard 3', 'Action', 5.5, 3, 5);
+
+INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
+	VALUES ( 'DeadPool', 'Action', 5.5, 3, 5);
+
+INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
+	VALUES ( 'BOOM', 'Action', 5.5, 3, 5);
+
+INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
+	VALUES ( 'POOOOWWW', 'Action', 5.5, 3, 5);
+
+INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
+	VALUES ( 'Army2', 'Action', 5.5, 3, 3);
+
+INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
+	VALUES ( 'Titanic', 'Drama', 5.5, 3, 5);
 
 
 INSERT INTO Actor (Name, Gender, DateOfBrith)
@@ -89,6 +104,38 @@ INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, MovieRate)
 		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
 		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard'), 5 )
 
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'POOOOWWW'), 5 )
+
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Titanic'), 5 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard 2'), 4 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'DeadPool'), 4 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Boom'), 4 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard 3'), 
+		'2025-8-19 21:42:14.38',3 )
+
 --INSERT INTO ActorRate (RentalRecordID, ActorID, ActorRate)
 --	VALUES ( (SELECT RentalRecordID FROM RentalRecord
 --		WHERE EmployeeID = (SELECT EmployeeID FROM Employee WHERE SSN = '111222333')
@@ -105,7 +152,7 @@ INSERT INTO ActorRate (RentalRecordID, ActorID, ActorRate)
 		WHERE ActorID = (SELECT ActorID from Actor WHERE Name = 'Bruce Wills')
 		AND MovieID = (SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard')), 
 		5 )
-
+;
 
 --SELECT * FROM EmployeePhone;
 --SELECT * FROM Customer;
@@ -117,6 +164,3 @@ INSERT INTO ActorRate (RentalRecordID, ActorID, ActorRate)
 --SELECT * FROM RentalRecord;
 --SELECT * FROM ActorRate;
 --SELECT * FROM User_log;
-
-
-

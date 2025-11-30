@@ -100,6 +100,7 @@ MovieType VARCHAR(10) NOT NULL
 	CHECK( MovieType='Comedy' or MovieType='Drama' or MovieType='Action' or MovieType='Foreign' ),
 Fee NUMERIC(6,2) NOT NULL,
 NumOfCopy INT NOT NULL,
+MovieAveRate INT NOT NULL,
 PRIMARY KEY( MovieID )
 );
 
@@ -156,6 +157,4 @@ ActorRate INT,
 FOREIGN KEY ( RentalRecordID ) REFERENCES RentalRecord( RentalRecordID ),
 FOREIGN KEY ( ActorID ) REFERENCES Actor( ActorID )
 );
-
-
 
