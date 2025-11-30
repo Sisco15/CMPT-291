@@ -24,7 +24,7 @@ public partial class Form2 : Form
         InitializeComponent();
         employeeId = id;
 
-        //String connectionString = "user id=group3;" + "password=group3pass;" + "server=localhost;" + "database=CMPT291_Proj;";
+        //String connectionString = "Server = DESKTOP-LGGJQU9; Database = CMPT291_AS2; Trusted_Connection = true;"; //comment
 
         // Setup Customer Queue columns
         dgvQueue.ColumnCount = 2;
@@ -45,9 +45,18 @@ public partial class Form2 : Form
         dgvRented.DefaultCellStyle.SelectionBackColor = dgvQueue.DefaultCellStyle.BackColor;
         dgvRented.DefaultCellStyle.SelectionForeColor = dgvQueue.DefaultCellStyle.ForeColor;
 
+        //report 1 and 2
+        comboBox1.Items.Add("Action");
+        comboBox1.Items.Add("Drama");
+        comboBox1.Items.Add("Comedy");
+        comboBox1.Items.Add("Foreign");
 
+        comboBox2.Items.Add("Action");
+        comboBox2.Items.Add("Drama");
+        comboBox2.Items.Add("Comedy");
+        comboBox2.Items.Add("Foreign");
 
-        //SqlConnection myConnection = new SqlConnection(connectionString); // Timeout in seconds
+        //SqlConnection myConnection = new SqlConnection(connectionString); //comment
         myConnection = new SqlConnection("user id=group3;" + // Username
                                          "password=group3pass;" + // Password
                                          "server=LAPTOP-U1T93UQT\\MSSQLSERVER01;" + // IP for the server
@@ -247,9 +256,9 @@ public partial class Form2 : Form
 
 
 
-// ----------------------------------------------------------------------------------------------
-   
-    
+    // ----------------------------------------------------------------------------------------------
+
+
 
     private void select_Click(object sender, EventArgs e)
     {
@@ -357,7 +366,7 @@ public partial class Form2 : Form
         {
             MessageBox.Show("No Customer Row Selected", "Error Modifying");
         }
-        
+
     }
 
 
@@ -491,6 +500,116 @@ public partial class Form2 : Form
         }
     }
 
+    private void textBox2_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void label6_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void button5_Click(object sender, EventArgs e)
+    {
+        if (comboBox1.SelectedItem == null)
+        {
+            MessageBox.Show("Please select a genre first.");
+            return;
+        }
+
+
+
+        myCommand.CommandText = @"
+        WITH RankedMovies AS (
+        SELECT MovieName, CheckoutTime, MovieAveRate, MovieType,DENSE_RANK() OVER (PARTITION BY M.MovieType ORDER BY M.MovieAveRate DESC) AS Top3
+        FROM RentalRecord AS R
+        JOIN Movie AS M ON M.MovieID = R.MovieID
+        WHERE R.CheckoutTime >= DATEADD(MONTH, -3, GETDATE()) AND M.MovieType = @Genre)
+        SELECT MovieName, Top3, MovieAveRate, MovieType
+        FROM RankedMovies
+        WHERE Top3 <= 3
+        ORDER BY MovieType, MovieAveRate DESC;";
+
+
+        myCommand.Parameters.Clear();
+        myCommand.Parameters.AddWithValue("@Genre", comboBox1.SelectedItem.ToString());
+
+
+        DataTable dt = new DataTable();
+        using (SqlDataAdapter adapter = new SqlDataAdapter(myCommand))
+        {
+            adapter.Fill(dt);
+        }
+
+        // Bind the DataTable to the DataGridView
+        Form popup = new Form();
+        popup.Text = "Top Movies by Genre";
+        popup.Size = new Size(800, 600);
+
+        // Create DataGridView and bind
+        DataGridView dgv = new DataGridView();
+        dgv.Dock = DockStyle.Fill;
+        dgv.DataSource = dt;
+        dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+        // Add DataGridView to the form
+        popup.Controls.Add(dgv);
+
+        // Show as a modal popup
+        popup.ShowDialog();
+    }
+
+    private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    private void button6_Click(object sender, EventArgs e)
+    {
+        if (comboBox1.SelectedItem == null)
+        {
+            MessageBox.Show("Please select a genre first.");
+            return;
+        }
+
+
+
+        myCommand.CommandText = @"";
+
+
+        myCommand.Parameters.Clear();
+        myCommand.Parameters.AddWithValue("@Genre", comboBox1.SelectedItem.ToString());
+
+
+        DataTable dt = new DataTable();
+        using (SqlDataAdapter adapter = new SqlDataAdapter(myCommand))
+        {
+            adapter.Fill(dt);
+        }
+
+        // Bind the DataTable to the DataGridView
+        Form popup = new Form();
+        popup.Text = "Top Movies by Genre";
+        popup.Size = new Size(800, 600);
+
+        // Create DataGridView and bind
+        DataGridView dgv = new DataGridView();
+        dgv.Dock = DockStyle.Fill;
+        dgv.DataSource = dt;
+        dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+        // Add DataGridView to the form
+        popup.Controls.Add(dgv);
+
+        // Show as a modal popup
+        popup.ShowDialog();
+    }
 }
 public class ComboItem
 {
