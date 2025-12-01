@@ -195,46 +195,9 @@ public partial class Form2 : Form
             myCommand.CommandText =
                 "INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, MovieRate) " +
                 "VALUES (@Emp, @Cust, @Movie, NULL)";
+            
 
-            // =================== DEBUG CHECKS ===================
-            //int emp = employeeId;
-            int custID = cust.Value;
-            int movieID = movie.Value;
-
-            // 1. Check Employee exists
-            myCommand.Parameters.Clear();
-            myCommand.CommandText = "SELECT COUNT(*) FROM Employee WHERE EmployeeID = @E";
-            myCommand.Parameters.AddWithValue("@E", 1019);
-            int empExists = (int)myCommand.ExecuteScalar();
-
-            // 2. Check Customer exists
-            myCommand.Parameters.Clear();
-            myCommand.CommandText = "SELECT COUNT(*) FROM Customer WHERE CustomerID = @C";
-            myCommand.Parameters.AddWithValue("@C", custID);
-            int custExists = (int)myCommand.ExecuteScalar();
-
-            // 3. Check Movie exists
-            myCommand.Parameters.Clear();
-            myCommand.CommandText = "SELECT COUNT(*) FROM Movie WHERE MovieID = @M";
-            myCommand.Parameters.AddWithValue("@M", movieID);
-            int movieExists = (int)myCommand.ExecuteScalar();
-
-            // 4. Show all results in one message
-            MessageBox.Show(
-                "DEBUG CHECKS\n\n" +
-                $"EmployeeID passed: {1019}\n" +
-                $"Exists in Employee table? {empExists}\n\n" +
-                $"CustomerID passed: {custID}\n" +
-                $"Exists in Customer table? {custExists}\n\n" +
-                $"MovieID passed: {movieID}\n" +
-                $"Exists in Movie table? {movieExists}",
-                "Foreign Key Debug Results"
-            );
-
-            // =================== END DEBUG ===================
-
-
-            myCommand.Parameters.AddWithValue("@Emp", 1019);
+            myCommand.Parameters.AddWithValue("@Emp", employeeId);
             myCommand.Parameters.AddWithValue("@Cust", cust.Value);
             myCommand.Parameters.AddWithValue("@Movie", movie.Value);
 
