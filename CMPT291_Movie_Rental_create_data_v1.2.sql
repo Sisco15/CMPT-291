@@ -1,4 +1,4 @@
-USE Proj2025F;
+USE CMPT291_proj;
 
 --
 -- Clean up DB schema
