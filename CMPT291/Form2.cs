@@ -57,12 +57,18 @@ public partial class Form2 : Form
         comboBox2.Items.Add("Foreign");
 
         //SqlConnection myConnection = new SqlConnection(connectionString); //comment
+        //myConnection = new SqlConnection("user id=group3;" + // Username
+        //                                 "password=group3pass;" + // Password
+        //                                 "server=LAPTOP-U1T93UQT\\MSSQLSERVER01;" + // IP for the server
+        //                                                                            //"Trusted_Connection=yes;" +
+        //                                 "database=Proj2025F; " + // Database to connect to
+        //                                 "connection timeout=30"); // Timeout in seconds
         myConnection = new SqlConnection("user id=group3;" + // Username
-                                         "password=group3pass;" + // Password
-                                         "server=LAPTOP-U1T93UQT\\MSSQLSERVER01;" + // IP for the server
-                                                                                    //"Trusted_Connection=yes;" +
-                                         "database=Proj2025F; " + // Database to connect to
-                                         "connection timeout=30"); // Timeout in seconds
+                                      "password=group3pass;" + // Password
+                                      "server=localhost;" + // IP for the server
+                                                            //"Trusted_Connection=yes;" +
+                                      "database=CMPT291_proj; " + // Database to connect to
+                                      "connection timeout=30"); // Timeout in seconds
 
         try
         {
@@ -609,6 +615,76 @@ public partial class Form2 : Form
 
         // Show as a modal popup
         popup.ShowDialog();
+    }
+
+    private void label10_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    private void button7_Click(object sender, EventArgs e)
+    {
+        if (comboBox3.SelectedItem == null)
+        {
+            MessageBox.Show("Please select a Month first.");
+            return;
+        }
+
+        myCommand.CommandText = @"
+        SELECT TOP 3
+               c.FirstName,
+               c.LastName,
+               COUNT(*) AS RentalCount
+        FROM Customer AS c, RentalRecord AS r
+        WHERE c.CustomerID = r.CustomerID
+          AND MONTH(r.CheckoutTime) = @Month  
+        GROUP BY c.FirstName, c.LastName
+        ORDER BY RentalCount Desc;";
+
+
+        myCommand.Parameters.Clear();
+        myCommand.Parameters.AddWithValue("@Month", monthToInt(comboBox3.SelectedItem.ToString()));
+
+
+        DataTable dt = new DataTable();
+        using (SqlDataAdapter adapter = new SqlDataAdapter(myCommand))
+        {
+            adapter.Fill(dt);
+        }
+
+        // Bind the DataTable to the DataGridView
+        Form popup = new Form();
+        popup.Text = "Top Customers by Month";
+        popup.Size = new Size(800, 600);
+
+        // Create DataGridView and bind
+        DataGridView dgv = new DataGridView();
+        dgv.Dock = DockStyle.Fill;
+        dgv.DataSource = dt;
+        dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+        // Add DataGridView to the form
+        popup.Controls.Add(dgv);
+
+        // Show as a modal popup
+        popup.ShowDialog();
+    }
+    private int monthToInt(string month)
+    {
+
+        if (month.ToLower() == "january") return 1;
+        else if (month.ToLower() == "february") return 2;
+        else if (month.ToLower() == "march") return 3;
+        else if (month.ToLower() == "april") return 4;
+        else if (month.ToLower() == "may") return 5;
+        else if (month.ToLower() == "june") return 6;
+        else if (month.ToLower() == "july") return 7;
+        else if (month.ToLower() == "august") return 8;
+        else if (month.ToLower() == "september") return 9;
+        else if (month.ToLower() == "october") return 10;
+        else if (month.ToLower() == "november") return 11;
+        else if (month.ToLower() == "december") return 12;
+        else throw new ArgumentException("Invalid month name provided.");
     }
 }
 public class ComboItem

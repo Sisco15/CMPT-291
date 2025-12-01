@@ -62,6 +62,10 @@
             dataGridView1 = new DataGridView();
             button1 = new Button();
             ReportsTab = new TabPage();
+            button7 = new Button();
+            comboBox3 = new ComboBox();
+            label10 = new Label();
+            label11 = new Label();
             button6 = new Button();
             comboBox2 = new ComboBox();
             label9 = new Label();
@@ -86,11 +90,10 @@
             // 
             CustomerList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             CustomerList.Columns.AddRange(new DataGridViewColumn[] { CustomerID, FirstName, LastName, AccountNum, Email, Province, City });
-            CustomerList.Location = new Point(0, 25);
-            CustomerList.Margin = new Padding(3, 2, 3, 2);
+            CustomerList.Location = new Point(0, 33);
             CustomerList.Name = "CustomerList";
             CustomerList.RowHeadersWidth = 51;
-            CustomerList.Size = new Size(675, 162);
+            CustomerList.Size = new Size(771, 216);
             CustomerList.TabIndex = 0;
             // 
             // CustomerID
@@ -150,11 +153,10 @@
             tabs.Controls.Add(tabPage2);
             tabs.Controls.Add(MoviesTab);
             tabs.Controls.Add(ReportsTab);
-            tabs.Location = new Point(10, 0);
-            tabs.Margin = new Padding(3, 2, 3, 2);
+            tabs.Location = new Point(11, 0);
             tabs.Name = "tabs";
             tabs.SelectedIndex = 0;
-            tabs.Size = new Size(826, 481);
+            tabs.Size = new Size(944, 641);
             tabs.TabIndex = 1;
             // 
             // Customer
@@ -165,22 +167,20 @@
             Customer.Controls.Add(searchBox);
             Customer.Controls.Add(modify);
             Customer.Controls.Add(CustomerList);
-            Customer.Location = new Point(4, 24);
-            Customer.Margin = new Padding(3, 2, 3, 2);
+            Customer.Location = new Point(4, 29);
             Customer.Name = "Customer";
-            Customer.Padding = new Padding(3, 2, 3, 2);
-            Customer.Size = new Size(818, 453);
+            Customer.Padding = new Padding(3);
+            Customer.Size = new Size(936, 608);
             Customer.TabIndex = 0;
             Customer.Text = "Customers";
             Customer.UseVisualStyleBackColor = true;
             // 
             // select
             // 
-            select.Location = new Point(566, 2);
-            select.Margin = new Padding(3, 2, 3, 2);
+            select.Location = new Point(647, 3);
             select.Name = "select";
             select.RightToLeft = RightToLeft.Yes;
-            select.Size = new Size(111, 19);
+            select.Size = new Size(127, 25);
             select.TabIndex = 6;
             select.Text = "Search";
             select.UseVisualStyleBackColor = true;
@@ -188,11 +188,10 @@
             // 
             // delButton
             // 
-            delButton.Location = new Point(6, 275);
-            delButton.Margin = new Padding(3, 2, 3, 2);
+            delButton.Location = new Point(7, 367);
             delButton.Name = "delButton";
             delButton.RightToLeft = RightToLeft.Yes;
-            delButton.Size = new Size(116, 24);
+            delButton.Size = new Size(133, 32);
             delButton.TabIndex = 5;
             delButton.Text = "Delete";
             delButton.UseVisualStyleBackColor = true;
@@ -200,11 +199,10 @@
             // 
             // addButton
             // 
-            addButton.Location = new Point(546, 269);
-            addButton.Margin = new Padding(3, 2, 3, 2);
+            addButton.Location = new Point(624, 359);
             addButton.Name = "addButton";
             addButton.RightToLeft = RightToLeft.Yes;
-            addButton.Size = new Size(116, 24);
+            addButton.Size = new Size(133, 32);
             addButton.TabIndex = 4;
             addButton.Text = "Add Customer";
             addButton.UseVisualStyleBackColor = true;
@@ -213,19 +211,17 @@
             // searchBox
             // 
             searchBox.Location = new Point(1, 1);
-            searchBox.Margin = new Padding(3, 2, 3, 2);
             searchBox.Name = "searchBox";
-            searchBox.Size = new Size(554, 23);
+            searchBox.Size = new Size(633, 27);
             searchBox.TabIndex = 3;
             searchBox.Text = "Search";
             // 
             // modify
             // 
-            modify.Location = new Point(546, 199);
-            modify.Margin = new Padding(3, 2, 3, 2);
+            modify.Location = new Point(624, 265);
             modify.Name = "modify";
             modify.RightToLeft = RightToLeft.Yes;
-            modify.Size = new Size(116, 24);
+            modify.Size = new Size(133, 32);
             modify.TabIndex = 2;
             modify.Text = "Modify";
             modify.UseVisualStyleBackColor = true;
@@ -242,20 +238,20 @@
             tabPage2.Controls.Add(dgvQueue);
             tabPage2.Controls.Add(cmbMovie);
             tabPage2.Controls.Add(cmbCustomer);
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Margin = new Padding(3, 2, 3, 2);
+            tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3, 2, 3, 2);
-            tabPage2.Size = new Size(818, 453);
+            tabPage2.Padding = new Padding(3);
+            tabPage2.Size = new Size(936, 608);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Rental";
             tabPage2.UseVisualStyleBackColor = true;
             // 
             // btnRent
             // 
-            btnRent.Location = new Point(505, 220);
+            btnRent.Location = new Point(577, 293);
+            btnRent.Margin = new Padding(3, 4, 3, 4);
             btnRent.Name = "btnRent";
-            btnRent.Size = new Size(147, 67);
+            btnRent.Size = new Size(168, 89);
             btnRent.TabIndex = 4;
             btnRent.Text = "Rent";
             btnRent.UseVisualStyleBackColor = true;
@@ -264,27 +260,27 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(384, 1);
+            label4.Location = new Point(439, 1);
             label4.Name = "label4";
-            label4.Size = new Size(136, 15);
+            label4.Size = new Size(169, 20);
             label4.TabIndex = 16;
             label4.Text = "Customer Rental History";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(0, 119);
+            label3.Location = new Point(0, 159);
             label3.Name = "label3";
-            label3.Size = new Size(97, 15);
+            label3.Size = new Size(119, 20);
             label3.TabIndex = 15;
             label3.Text = "Customer Queue";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(0, 61);
+            label2.Location = new Point(0, 81);
             label2.Name = "label2";
-            label2.Size = new Size(40, 15);
+            label2.Size = new Size(50, 20);
             label2.TabIndex = 14;
             label2.Text = "Movie";
             // 
@@ -293,42 +289,46 @@
             label1.AutoSize = true;
             label1.Location = new Point(0, 1);
             label1.Name = "label1";
-            label1.Size = new Size(59, 15);
+            label1.Size = new Size(72, 20);
             label1.TabIndex = 13;
             label1.Text = "Customer";
             // 
             // dgvRented
             // 
             dgvRented.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRented.Location = new Point(384, 19);
+            dgvRented.Location = new Point(439, 25);
+            dgvRented.Margin = new Padding(3, 4, 3, 4);
             dgvRented.Name = "dgvRented";
             dgvRented.RowHeadersWidth = 51;
-            dgvRented.Size = new Size(290, 167);
+            dgvRented.Size = new Size(331, 223);
             dgvRented.TabIndex = 12;
             // 
             // dgvQueue
             // 
             dgvQueue.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvQueue.Location = new Point(0, 137);
+            dgvQueue.Location = new Point(0, 183);
+            dgvQueue.Margin = new Padding(3, 4, 3, 4);
             dgvQueue.Name = "dgvQueue";
             dgvQueue.RowHeadersWidth = 51;
-            dgvQueue.Size = new Size(315, 167);
+            dgvQueue.Size = new Size(360, 223);
             dgvQueue.TabIndex = 11;
             // 
             // cmbMovie
             // 
             cmbMovie.FormattingEnabled = true;
-            cmbMovie.Location = new Point(0, 79);
+            cmbMovie.Location = new Point(0, 105);
+            cmbMovie.Margin = new Padding(3, 4, 3, 4);
             cmbMovie.Name = "cmbMovie";
-            cmbMovie.Size = new Size(103, 23);
+            cmbMovie.Size = new Size(117, 28);
             cmbMovie.TabIndex = 10;
             // 
             // cmbCustomer
             // 
             cmbCustomer.FormattingEnabled = true;
-            cmbCustomer.Location = new Point(0, 19);
+            cmbCustomer.Location = new Point(0, 25);
+            cmbCustomer.Margin = new Padding(3, 4, 3, 4);
             cmbCustomer.Name = "cmbCustomer";
-            cmbCustomer.Size = new Size(103, 23);
+            cmbCustomer.Size = new Size(117, 28);
             cmbCustomer.TabIndex = 9;
             cmbCustomer.SelectedIndexChanged += cmbCustomer_SelectedIndexChanged;
             // 
@@ -341,20 +341,20 @@
             MoviesTab.Controls.Add(label5);
             MoviesTab.Controls.Add(dataGridView1);
             MoviesTab.Controls.Add(button1);
-            MoviesTab.Location = new Point(4, 24);
-            MoviesTab.Margin = new Padding(2);
+            MoviesTab.Location = new Point(4, 29);
+            MoviesTab.Margin = new Padding(2, 3, 2, 3);
             MoviesTab.Name = "MoviesTab";
-            MoviesTab.Size = new Size(818, 453);
+            MoviesTab.Size = new Size(936, 608);
             MoviesTab.TabIndex = 2;
             MoviesTab.Text = "Movies";
             MoviesTab.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            button4.Location = new Point(545, 251);
-            button4.Margin = new Padding(2);
+            button4.Location = new Point(621, 335);
+            button4.Margin = new Padding(2, 3, 2, 3);
             button4.Name = "button4";
-            button4.Size = new Size(52, 20);
+            button4.Size = new Size(61, 27);
             button4.TabIndex = 15;
             button4.Text = "Delete";
             button4.UseVisualStyleBackColor = true;
@@ -362,10 +362,10 @@
             // 
             // button3
             // 
-            button3.Location = new Point(114, 251);
-            button3.Margin = new Padding(2);
+            button3.Location = new Point(142, 335);
+            button3.Margin = new Padding(2, 3, 2, 3);
             button3.Name = "button3";
-            button3.Size = new Size(39, 20);
+            button3.Size = new Size(56, 27);
             button3.TabIndex = 14;
             button3.Text = "Edit";
             button3.UseVisualStyleBackColor = true;
@@ -373,10 +373,10 @@
             // 
             // button2
             // 
-            button2.Location = new Point(72, 251);
-            button2.Margin = new Padding(2);
+            button2.Location = new Point(82, 335);
+            button2.Margin = new Padding(2, 3, 2, 3);
             button2.Name = "button2";
-            button2.Size = new Size(38, 20);
+            button2.Size = new Size(56, 27);
             button2.TabIndex = 13;
             button2.Text = "Add";
             button2.UseVisualStyleBackColor = true;
@@ -384,40 +384,40 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(124, 20);
-            textBox1.Margin = new Padding(2);
+            textBox1.Location = new Point(142, 27);
+            textBox1.Margin = new Padding(2, 3, 2, 3);
             textBox1.Name = "textBox1";
             textBox1.PlaceholderText = "Search";
-            textBox1.Size = new Size(416, 23);
+            textBox1.Size = new Size(475, 27);
             textBox1.TabIndex = 12;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(72, 23);
+            label5.Location = new Point(82, 31);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";
-            label5.Size = new Size(45, 15);
+            label5.Size = new Size(56, 20);
             label5.TabIndex = 11;
             label5.Text = "Movies";
             // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(72, 44);
-            dataGridView1.Margin = new Padding(2);
+            dataGridView1.Location = new Point(82, 59);
+            dataGridView1.Margin = new Padding(2, 3, 2, 3);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(525, 194);
+            dataGridView1.Size = new Size(600, 259);
             dataGridView1.TabIndex = 10;
             dataGridView1.CellDoubleClick += dataGridView1_CellClick;
             // 
             // button1
             // 
-            button1.Location = new Point(543, 20);
-            button1.Margin = new Padding(2);
+            button1.Location = new Point(621, 27);
+            button1.Margin = new Padding(2, 3, 2, 3);
             button1.Name = "button1";
-            button1.Size = new Size(53, 20);
+            button1.Size = new Size(61, 27);
             button1.TabIndex = 9;
             button1.Text = "Search";
             button1.UseVisualStyleBackColor = true;
@@ -425,6 +425,10 @@
             // 
             // ReportsTab
             // 
+            ReportsTab.Controls.Add(button7);
+            ReportsTab.Controls.Add(comboBox3);
+            ReportsTab.Controls.Add(label10);
+            ReportsTab.Controls.Add(label11);
             ReportsTab.Controls.Add(button6);
             ReportsTab.Controls.Add(comboBox2);
             ReportsTab.Controls.Add(label9);
@@ -433,19 +437,61 @@
             ReportsTab.Controls.Add(comboBox1);
             ReportsTab.Controls.Add(label7);
             ReportsTab.Controls.Add(label6);
-            ReportsTab.Location = new Point(4, 24);
-            ReportsTab.Margin = new Padding(2);
+            ReportsTab.Location = new Point(4, 29);
+            ReportsTab.Margin = new Padding(2, 3, 2, 3);
             ReportsTab.Name = "ReportsTab";
-            ReportsTab.Size = new Size(818, 453);
+            ReportsTab.Size = new Size(936, 608);
             ReportsTab.TabIndex = 3;
             ReportsTab.Text = "Reports";
             ReportsTab.UseVisualStyleBackColor = true;
             // 
+            // button7
+            // 
+            button7.Location = new Point(530, 196);
+            button7.Margin = new Padding(3, 4, 3, 4);
+            button7.Name = "button7";
+            button7.Size = new Size(97, 31);
+            button7.TabIndex = 11;
+            button7.Text = "Run Report 3";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
+            // 
+            // comboBox3
+            // 
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July ", "August", "September", "October", "November", "December" });
+            comboBox3.Location = new Point(250, 199);
+            comboBox3.Margin = new Padding(3, 4, 3, 4);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(138, 28);
+            comboBox3.TabIndex = 10;
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Location = new Point(14, 207);
+            label10.Name = "label10";
+            label10.Size = new Size(230, 20);
+            label10.TabIndex = 9;
+            label10.Text = "Most Active Customers in Month: ";
+            label10.Click += label10_Click;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI", 11F);
+            label11.Location = new Point(3, 166);
+            label11.Name = "label11";
+            label11.Size = new Size(82, 25);
+            label11.TabIndex = 8;
+            label11.Text = "Report 2";
+            // 
             // button6
             // 
-            button6.Location = new Point(440, 94);
+            button6.Location = new Point(530, 126);
+            button6.Margin = new Padding(3, 4, 3, 4);
             button6.Name = "button6";
-            button6.Size = new Size(85, 23);
+            button6.Size = new Size(97, 31);
             button6.TabIndex = 7;
             button6.Text = "Run Report 2";
             button6.UseVisualStyleBackColor = true;
@@ -454,18 +500,19 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(304, 95);
+            comboBox2.Location = new Point(374, 128);
+            comboBox2.Margin = new Padding(3, 4, 3, 4);
             comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(121, 23);
+            comboBox2.Size = new Size(138, 28);
             comboBox2.TabIndex = 6;
             comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(12, 103);
+            label9.Location = new Point(14, 137);
             label9.Name = "label9";
-            label9.Size = new Size(286, 15);
+            label9.Size = new Size(362, 20);
             label9.TabIndex = 5;
             label9.Text = "Revenue generated by genre of movie for the quarter";
             // 
@@ -473,17 +520,18 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 11F);
-            label8.Location = new Point(3, 72);
+            label8.Location = new Point(3, 96);
             label8.Name = "label8";
-            label8.Size = new Size(66, 20);
+            label8.Size = new Size(82, 25);
             label8.TabIndex = 4;
             label8.Text = "Report 2";
             // 
             // button5
             // 
-            button5.Location = new Point(440, 42);
+            button5.Location = new Point(530, 57);
+            button5.Margin = new Padding(3, 4, 3, 4);
             button5.Name = "button5";
-            button5.Size = new Size(85, 23);
+            button5.Size = new Size(97, 31);
             button5.TabIndex = 3;
             button5.Text = "Run Report 1";
             button5.UseVisualStyleBackColor = true;
@@ -492,18 +540,19 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(304, 43);
+            comboBox1.Location = new Point(374, 58);
+            comboBox1.Margin = new Padding(3, 4, 3, 4);
             comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
+            comboBox1.Size = new Size(138, 28);
             comboBox1.TabIndex = 2;
             comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(12, 46);
+            label7.Location = new Point(14, 61);
             label7.Name = "label7";
-            label7.Size = new Size(276, 15);
+            label7.Size = new Size(349, 20);
             label7.TabIndex = 1;
             label7.Text = "Top rated movies by genre of movie for the quarter";
             // 
@@ -511,20 +560,19 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 11F);
-            label6.Location = new Point(3, 15);
+            label6.Location = new Point(3, 20);
             label6.Name = "label6";
-            label6.Size = new Size(66, 20);
+            label6.Size = new Size(82, 25);
             label6.TabIndex = 0;
             label6.Text = "Report 1";
             label6.Click += label6_Click;
             // 
             // Form2
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(848, 492);
+            ClientSize = new Size(913, 656);
             Controls.Add(tabs);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "Form2";
             Text = "Customers";
             ((System.ComponentModel.ISupportInitialize)CustomerList).EndInit();
@@ -588,5 +636,9 @@
         private ComboBox comboBox2;
         private Label label9;
         private Label label8;
+        private Button button7;
+        private ComboBox comboBox3;
+        private Label label10;
+        private Label label11;
     }
 }
