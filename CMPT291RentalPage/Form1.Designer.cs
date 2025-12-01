@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             sqlCommand1 = new Microsoft.Data.SqlClient.SqlCommand();
-            cmbCustomer = new ComboBox();
             cmbMovie = new ComboBox();
             dgvQueue = new DataGridView();
             btnRent = new Button();
@@ -38,6 +37,8 @@
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
+            txtSearchCustomer = new TextBox();
+            lstCustomerResults = new ListBox();
             ((System.ComponentModel.ISupportInitialize)dgvQueue).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvRented).BeginInit();
             SuspendLayout();
@@ -47,19 +48,10 @@
             sqlCommand1.CommandTimeout = 30;
             sqlCommand1.EnableOptimizedParameterBinding = false;
             // 
-            // cmbCustomer
-            // 
-            cmbCustomer.FormattingEnabled = true;
-            cmbCustomer.Location = new Point(51, 41);
-            cmbCustomer.Name = "cmbCustomer";
-            cmbCustomer.Size = new Size(121, 23);
-            cmbCustomer.TabIndex = 0;
-            cmbCustomer.SelectedIndexChanged += cmbCustomer_SelectedIndexChanged;
-            // 
             // cmbMovie
             // 
             cmbMovie.FormattingEnabled = true;
-            cmbMovie.Location = new Point(51, 101);
+            cmbMovie.Location = new Point(239, 41);
             cmbMovie.Name = "cmbMovie";
             cmbMovie.Size = new Size(121, 23);
             cmbMovie.TabIndex = 1;
@@ -67,16 +59,16 @@
             // dgvQueue
             // 
             dgvQueue.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvQueue.Location = new Point(51, 176);
+            dgvQueue.Location = new Point(239, 166);
             dgvQueue.Name = "dgvQueue";
-            dgvQueue.Size = new Size(326, 250);
+            dgvQueue.Size = new Size(365, 340);
             dgvQueue.TabIndex = 2;
             // 
             // btnRent
             // 
-            btnRent.Location = new Point(595, 359);
+            btnRent.Location = new Point(819, 467);
             btnRent.Name = "btnRent";
-            btnRent.Size = new Size(147, 67);
+            btnRent.Size = new Size(91, 39);
             btnRent.TabIndex = 3;
             btnRent.Text = "Rent";
             btnRent.UseVisualStyleBackColor = true;
@@ -85,15 +77,15 @@
             // dgvRented
             // 
             dgvRented.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRented.Location = new Point(435, 41);
+            dgvRented.Location = new Point(610, 41);
             dgvRented.Name = "dgvRented";
-            dgvRented.Size = new Size(307, 241);
+            dgvRented.Size = new Size(312, 406);
             dgvRented.TabIndex = 4;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(51, 23);
+            label1.Location = new Point(12, 23);
             label1.Name = "label1";
             label1.Size = new Size(59, 15);
             label1.TabIndex = 5;
@@ -102,7 +94,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(51, 83);
+            label2.Location = new Point(239, 23);
             label2.Name = "label2";
             label2.Size = new Size(40, 15);
             label2.TabIndex = 6;
@@ -111,7 +103,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(51, 158);
+            label3.Location = new Point(239, 139);
             label3.Name = "label3";
             label3.Size = new Size(97, 15);
             label3.TabIndex = 7;
@@ -120,17 +112,37 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(435, 23);
+            label4.Location = new Point(610, 23);
             label4.Name = "label4";
             label4.Size = new Size(136, 15);
             label4.TabIndex = 8;
             label4.Text = "Customer Rental History";
             // 
+            // txtSearchCustomer
+            // 
+            txtSearchCustomer.Location = new Point(12, 41);
+            txtSearchCustomer.Name = "txtSearchCustomer";
+            txtSearchCustomer.Size = new Size(100, 23);
+            txtSearchCustomer.TabIndex = 9;
+            txtSearchCustomer.TextChanged += txtSearchCustomer_TextChanged;
+            // 
+            // lstCustomerResults
+            // 
+            lstCustomerResults.FormattingEnabled = true;
+            lstCustomerResults.Location = new Point(12, 82);
+            lstCustomerResults.Name = "lstCustomerResults";
+            lstCustomerResults.Size = new Size(221, 424);
+            lstCustomerResults.TabIndex = 10;
+            lstCustomerResults.Visible = false;
+            lstCustomerResults.SelectedIndexChanged += lstCustomerResults_SelectedIndexChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(961, 553);
+            Controls.Add(lstCustomerResults);
+            Controls.Add(txtSearchCustomer);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -139,7 +151,6 @@
             Controls.Add(btnRent);
             Controls.Add(dgvQueue);
             Controls.Add(cmbMovie);
-            Controls.Add(cmbCustomer);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)dgvQueue).EndInit();
@@ -151,7 +162,6 @@
         #endregion
 
         private Microsoft.Data.SqlClient.SqlCommand sqlCommand1;
-        private ComboBox cmbCustomer;
         private ComboBox cmbMovie;
         private DataGridView dgvQueue;
         private Button btnRent;
@@ -160,5 +170,7 @@
         private Label label2;
         private Label label3;
         private Label label4;
+        private TextBox txtSearchCustomer;
+        private ListBox lstCustomerResults;
     }
 }

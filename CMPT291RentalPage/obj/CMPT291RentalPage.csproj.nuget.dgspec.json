@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Syed\\Desktop\\CMPT291RentalPage\\CMPT291RentalPage.csproj": {}
+    "C:\\Users\\Syed\\Desktop\\CMPT291GIT\\CMPT-291\\CMPT291RentalPage\\CMPT291RentalPage.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Syed\\Desktop\\CMPT291RentalPage\\CMPT291RentalPage.csproj": {
+    "C:\\Users\\Syed\\Desktop\\CMPT291GIT\\CMPT-291\\CMPT291RentalPage\\CMPT291RentalPage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Syed\\Desktop\\CMPT291RentalPage\\CMPT291RentalPage.csproj",
+        "projectUniqueName": "C:\\Users\\Syed\\Desktop\\CMPT291GIT\\CMPT-291\\CMPT291RentalPage\\CMPT291RentalPage.csproj",
         "projectName": "CMPT291RentalPage",
-        "projectPath": "C:\\Users\\Syed\\Desktop\\CMPT291RentalPage\\CMPT291RentalPage.csproj",
+        "projectPath": "C:\\Users\\Syed\\Desktop\\CMPT291GIT\\CMPT-291\\CMPT291RentalPage\\CMPT291RentalPage.csproj",
         "packagesPath": "C:\\Users\\Syed\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Syed\\Desktop\\CMPT291RentalPage\\obj\\",
+        "outputPath": "C:\\Users\\Syed\\Desktop\\CMPT291GIT\\CMPT-291\\CMPT291RentalPage\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Syed\\AppData\\Roaming\\NuGet\\NuGet.Config",
