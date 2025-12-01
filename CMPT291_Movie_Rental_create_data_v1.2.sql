@@ -30,6 +30,7 @@ CREATE TABLE User_log(
 EmployeeID INT,
 username VARCHAR(40) NOT NULL,
 pass_word VARCHAR(40) NOT NULL,
+SSN NCHAR(9) NOT NULL,
 PRIMARY KEY( EmployeeID )
 );
 
@@ -157,4 +158,5 @@ ActorRate INT,
 FOREIGN KEY ( RentalRecordID ) REFERENCES RentalRecord( RentalRecordID ),
 FOREIGN KEY ( ActorID ) REFERENCES Actor( ActorID )
 );
+
 
