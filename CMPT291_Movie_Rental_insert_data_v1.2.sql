@@ -32,7 +32,7 @@ INSERT INTO User_log (EmployeeID, username, pass_word)
 	VALUES (NEXT VALUE FOR Employee_EmployeeID_Seq, 'John', '81dc9bdb52d04dc20036dbd8313ed055');
 
 INSERT INTO Employee (EmployeeID, SSN, LastName, FirstName, StartDate)
-	VALUES ( NEXT VALUE FOR Employee_EmployeeID_Seq, '111222333', 'Smith', 'John', '2024-10-29');
+	VALUES ((select EmployeeID from User_log where SSN = '111222333' and username = 'John' ), '111222333', 'Smith', 'John', '2024-10-29');
 
 INSERT INTO EmployeePhone (EmployeeID, PhoneNum, PhoneType)
 	VALUES( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
@@ -234,4 +234,5 @@ INSERT INTO ActorRate (RentalRecordID, ActorID, ActorRate)
 --SELECT * FROM RentalRecord;
 --SELECT * FROM ActorRate;
 --SELECT * FROM User_log;
+
 
