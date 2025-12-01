@@ -21,12 +21,7 @@ namespace CMPT291
         public addCust()
         {
             InitializeComponent();
-            //SqlConnection myConnection = new SqlConnection("user id=group3;" + // Username
-            //                             "password=group3pass;" + // Password
-            //                             "server=LAPTOP-U1T93UQT\\MSSQLSERVER01;" + // IP for the server
-            //                                                                        //"Trusted_Connection=yes;" +
-            //                             "database=Proj2025F; " + // Database to connect to
-            //                             "connection timeout=30"); // Timeout in seconds
+            
             SqlConnection myConnection = new SqlConnection("user id=group3;" + // Username
                                      "password=group3pass;" + // Password
                                      "server=localhost;" + // IP for the server
@@ -101,3 +96,4 @@ namespace CMPT291
         }
     }
 }
+

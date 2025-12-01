@@ -1,4 +1,4 @@
-﻿namespace CMPT291
+namespace CMPT291
 {
     partial class Form2
     {
@@ -63,6 +63,11 @@
             dataGridView1 = new DataGridView();
             button1 = new Button();
             ReportsTab = new TabPage();
+            comboBox4 = new ComboBox();
+            button8 = new Button();
+            label14 = new Label();
+            label13 = new Label();
+            label12 = new Label();
             button7 = new Button();
             comboBox3 = new ComboBox();
             label10 = new Label();
@@ -441,6 +446,11 @@
             // 
             // ReportsTab
             // 
+            ReportsTab.Controls.Add(comboBox4);
+            ReportsTab.Controls.Add(button8);
+            ReportsTab.Controls.Add(label14);
+            ReportsTab.Controls.Add(label13);
+            ReportsTab.Controls.Add(label12);
             ReportsTab.Controls.Add(button7);
             ReportsTab.Controls.Add(comboBox3);
             ReportsTab.Controls.Add(label10);
@@ -460,6 +470,54 @@
             ReportsTab.TabIndex = 3;
             ReportsTab.Text = "Reports";
             ReportsTab.UseVisualStyleBackColor = true;
+            // 
+            // comboBox4
+            // 
+            comboBox4.FormattingEnabled = true;
+            comboBox4.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July ", "August", "September", "October", "November", "December" });
+            comboBox4.Location = new Point(348, 262);
+            comboBox4.Name = "comboBox4";
+            comboBox4.Size = new Size(112, 23);
+            comboBox4.TabIndex = 21;
+            // 
+            // button8
+            // 
+            button8.Location = new Point(475, 262);
+            button8.Name = "button8";
+            button8.Size = new Size(85, 23);
+            button8.TabIndex = 20;
+            button8.Text = "Run Report 5";
+            button8.UseVisualStyleBackColor = true;
+            button8.Click += button8_Click;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(12, 266);
+            label14.Name = "label14";
+            label14.Size = new Size(330, 15);
+            label14.TabIndex = 19;
+            label14.Text = "Employees who distributed the most movies in a time frame: ";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Font = new Font("Segoe UI", 11F);
+            label13.Location = new Point(3, 237);
+            label13.Name = "label13";
+            label13.Size = new Size(66, 20);
+            label13.TabIndex = 18;
+            label13.Text = "Report 5";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI", 11F);
+            label12.Location = new Point(3, 187);
+            label12.Name = "label12";
+            label12.Size = new Size(66, 20);
+            label12.TabIndex = 17;
+            label12.Text = "Report 4";
             // 
             // button7
             // 
@@ -498,7 +556,7 @@
             label11.Name = "label11";
             label11.Size = new Size(66, 20);
             label11.TabIndex = 8;
-            label11.Text = "Report 2";
+            label11.Text = "Report 3";
             // 
             // button6
             // 
@@ -652,5 +710,10 @@
         private Label label11;
         private ListBox lstCustomerResults;
         private TextBox txtSearchCustomer;
+        private ComboBox comboBox4;
+        private Button button8;
+        private Label label14;
+        private Label label13;
+        private Label label12;
     }
 }
