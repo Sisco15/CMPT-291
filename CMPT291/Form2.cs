@@ -578,7 +578,7 @@ public partial class Form2 : Form
 
     private void button6_Click(object sender, EventArgs e)
     {
-        if (comboBox1.SelectedItem == null)
+        if (comboBox2.SelectedItem == null)
         {
             MessageBox.Show("Please select a genre first.");
             return;
@@ -586,11 +586,21 @@ public partial class Form2 : Form
 
 
 
-        myCommand.CommandText = @"";
+            myCommand.CommandText = @"SELECT
+            FORMAT(CheckoutTime, 'yyyy-MM') AS [month],
+            MovieType,
+            COUNT(*) AS total_orders,
+            COUNT(*) * 15 AS total_revenue
+            FROM RentalRecord AS R
+            JOIN Movie AS M ON M.MovieID = R.MovieID
+            WHERE R.CheckoutTime >= DATEADD(MONTH, -3, GETDATE())
+            AND M.MovieType = @Genre
+            GROUP BY FORMAT(R.CheckoutTime, 'yyyy-MM'), M.MovieType
+            ORDER BY [month] DESC, M.MovieType;";
 
 
         myCommand.Parameters.Clear();
-        myCommand.Parameters.AddWithValue("@Genre", comboBox1.SelectedItem.ToString());
+        myCommand.Parameters.AddWithValue("@Genre", comboBox2.SelectedItem.ToString());
 
 
         DataTable dt = new DataTable();
@@ -703,5 +713,6 @@ public class ComboItem
         return Text;
     }
 }
+
 
 
