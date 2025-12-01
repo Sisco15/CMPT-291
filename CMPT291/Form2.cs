@@ -27,9 +27,10 @@ public partial class Form2 : Form
         //String connectionString = "Server = DESKTOP-LGGJQU9; Database = CMPT291_AS2; Trusted_Connection = true;"; //comment
 
         // Setup Customer Queue columns
-        dgvQueue.ColumnCount = 2;
+        dgvQueue.ColumnCount = 3;
         dgvQueue.Columns[0].Name = "Movie Name";
         dgvQueue.Columns[1].Name = "Sort Number";
+        dgvQueue.Columns[2].Name = "Available Copies";
         dgvQueue.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         dgvQueue.ReadOnly = true;
         dgvQueue.DefaultCellStyle.SelectionBackColor = dgvQueue.DefaultCellStyle.BackColor;
@@ -37,9 +38,10 @@ public partial class Form2 : Form
 
 
         // Setup Rented Movies Grid
-        dgvRented.ColumnCount = 2;
+        dgvRented.ColumnCount = 3;
         dgvRented.Columns[0].Name = "Movie Name";
         dgvRented.Columns[1].Name = "Checkout Time";
+        dgvRented.Columns[2].Name = "Returned";
         dgvRented.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         dgvRented.ReadOnly = true;
         dgvRented.DefaultCellStyle.SelectionBackColor = dgvQueue.DefaultCellStyle.BackColor;
@@ -85,11 +87,13 @@ public partial class Form2 : Form
 
     }
 
+    private List<ComboItem> allCustomers = new List<ComboItem>();
+    private ComboItem selectedCustomer = null;
     private void LoadCustomers()
     {
         try
         {
-            cmbCustomer.Items.Clear();
+            allCustomers.Clear();
 
             myCommand.CommandText =
                 "SELECT CustomerID, FirstName + ' ' + LastName AS FullName FROM Customer";
@@ -101,7 +105,7 @@ public partial class Form2 : Form
                 if (myReader["CustomerID"] != DBNull.Value &&
                     myReader["FullName"] != DBNull.Value)
                 {
-                    cmbCustomer.Items.Add(
+                    allCustomers.Add(
                         new ComboItem(
                             myReader["FullName"].ToString() ?? "",
                             Convert.ToInt32(myReader["CustomerID"])
@@ -117,19 +121,6 @@ public partial class Form2 : Form
             MessageBox.Show(ex.ToString(), "Error loading customers");
         }
     }
-
-    private void cmbCustomer_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        cmbMovie.Items.Clear();
-        cmbMovie.Text = "";
-
-        if (cmbCustomer.SelectedItem == null) return;
-
-        ComboItem cust = (ComboItem)cmbCustomer.SelectedItem;
-        LoadQueue(cust.Value);
-        LoadRentedMovies(cust.Value);
-    }
-
     private void LoadQueue(int customerID)
     {
         try
@@ -138,10 +129,11 @@ public partial class Form2 : Form
             cmbMovie.Items.Clear();
 
             myCommand.CommandText =
-                "SELECT cq.MovieID, m.MovieName, cq.SortNum " +
+                "SELECT cq.MovieID, m.MovieName, cq.SortNum, m.NumOfCopy " +
                 "FROM CustomerQueue cq, Movie m " +
                 "WHERE cq.CustomerID = @CID and cq.MovieID = m.MovieID " +
                 "ORDER BY cq.SortNum";
+
 
             myCommand.Parameters.Clear();
             myCommand.Parameters.AddWithValue("@CID", customerID);
@@ -153,10 +145,11 @@ public partial class Form2 : Form
                 int movieID = Convert.ToInt32(myReader["MovieID"]);
                 string movieName = myReader["MovieName"].ToString() ?? "";
                 int sortNum = Convert.ToInt32(myReader["SortNum"]);
-
-                dgvQueue.Rows.Add(movieName, sortNum);
+                int copies = Convert.ToInt32(myReader["NumOfCopy"]);
+                dgvQueue.Rows.Add(movieName, sortNum, copies);
                 cmbMovie.Items.Add(new ComboItem(movieName, movieID));
             }
+
 
             myReader.Close();
         }
@@ -170,43 +163,96 @@ public partial class Form2 : Form
     {
         try
         {
-            if (cmbCustomer.SelectedItem == null || cmbMovie.SelectedItem == null)
+            if (selectedCustomer == null)
             {
-                MessageBox.Show("Select a customer and a movie.");
+                MessageBox.Show("Select a customer first.");
                 return;
             }
 
-            ComboItem cust = (ComboItem)cmbCustomer.SelectedItem;
+            if (cmbMovie.SelectedItem == null)
+            {
+                MessageBox.Show("Select a movie.");
+                return;
+            }
+
+            ComboItem cust = selectedCustomer;
             ComboItem movie = (ComboItem)cmbMovie.SelectedItem;
 
-            // Check if the movie is already being rented
+            // Check if already renting
             if (CustomerAlreadyRenting(cust.Value, movie.Value))
             {
-                MessageBox.Show("This customer is already renting this movie. It must be returned before renting again.");
+                MessageBox.Show("This customer is already renting this movie.");
                 return;
             }
 
-            // Insert rental record
+            if (!CopiesAvailable(movie.Value))
+            {
+                MessageBox.Show("No copies available to rent.");
+                return;
+            }
+
             myCommand.Parameters.Clear();
             myCommand.CommandText =
                 "INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, MovieRate) " +
                 "VALUES (@Emp, @Cust, @Movie, NULL)";
 
-            myCommand.Parameters.AddWithValue("@Emp", employeeId);
+            // =================== DEBUG CHECKS ===================
+            //int emp = employeeId;
+            int custID = cust.Value;
+            int movieID = movie.Value;
+
+            // 1. Check Employee exists
+            myCommand.Parameters.Clear();
+            myCommand.CommandText = "SELECT COUNT(*) FROM Employee WHERE EmployeeID = @E";
+            myCommand.Parameters.AddWithValue("@E", 1019);
+            int empExists = (int)myCommand.ExecuteScalar();
+
+            // 2. Check Customer exists
+            myCommand.Parameters.Clear();
+            myCommand.CommandText = "SELECT COUNT(*) FROM Customer WHERE CustomerID = @C";
+            myCommand.Parameters.AddWithValue("@C", custID);
+            int custExists = (int)myCommand.ExecuteScalar();
+
+            // 3. Check Movie exists
+            myCommand.Parameters.Clear();
+            myCommand.CommandText = "SELECT COUNT(*) FROM Movie WHERE MovieID = @M";
+            myCommand.Parameters.AddWithValue("@M", movieID);
+            int movieExists = (int)myCommand.ExecuteScalar();
+
+            // 4. Show all results in one message
+            MessageBox.Show(
+                "DEBUG CHECKS\n\n" +
+                $"EmployeeID passed: {1019}\n" +
+                $"Exists in Employee table? {empExists}\n\n" +
+                $"CustomerID passed: {custID}\n" +
+                $"Exists in Customer table? {custExists}\n\n" +
+                $"MovieID passed: {movieID}\n" +
+                $"Exists in Movie table? {movieExists}",
+                "Foreign Key Debug Results"
+            );
+
+            // =================== END DEBUG ===================
+
+
+            myCommand.Parameters.AddWithValue("@Emp", 1019);
             myCommand.Parameters.AddWithValue("@Cust", cust.Value);
             myCommand.Parameters.AddWithValue("@Movie", movie.Value);
 
             myCommand.ExecuteNonQuery();
 
-            MessageBox.Show("Movie rented successfully");
+            myCommand.Parameters.Clear();
+            myCommand.CommandText =
+                "UPDATE Movie SET NumOfCopy = NumOfCopy - 1 WHERE MovieID = @Movie";
+            myCommand.Parameters.AddWithValue("@Movie", movie.Value);
+            myCommand.ExecuteNonQuery();
+
+            MessageBox.Show("Movie rented successfully!");
 
             cmbMovie.Items.Clear();
             cmbMovie.Text = "";
 
-            // Refresh displays
             LoadQueue(cust.Value);
             LoadRentedMovies(cust.Value);
-
         }
         catch (Exception ex)
         {
@@ -222,10 +268,10 @@ public partial class Form2 : Form
 
             myCommand.Parameters.Clear();
             myCommand.CommandText =
-                "SELECT rr.RentalRecordID, m.MovieName, rr.CheckoutTime " +
-                "FROM RentalRecord rr " +
-                "JOIN Movie m ON rr.MovieID = m.MovieID " +
-                "WHERE rr.CustomerID = @CID AND rr.ReturnTime IS NULL";
+                "SELECT m.MovieName, rr.CheckoutTime, rr.ReturnTime " +
+                "FROM RentalRecord rr, Movie m " +
+                "WHERE rr.CustomerID = @CID and rr.MovieID = m.MovieID";
+
 
             myCommand.Parameters.AddWithValue("@CID", customerID);
 
@@ -233,11 +279,17 @@ public partial class Form2 : Form
 
             while (myReader.Read())
             {
-                dgvRented.Rows.Add(
-                    myReader["MovieName"].ToString(),
-                    myReader["CheckoutTime"].ToString()
-                );
+                string movieName = myReader["MovieName"].ToString();
+                string checkout = myReader["CheckoutTime"].ToString();
+                string returned;
+                if (myReader["ReturnTime"] == DBNull.Value)
+                    returned = "No";
+                else
+                    returned = "Yes";
+
+                dgvRented.Rows.Add(movieName, checkout, returned);
             }
+
 
             myReader.Close();
         }
@@ -258,6 +310,55 @@ public partial class Form2 : Form
 
         int count = (int)myCommand.ExecuteScalar();
         return count > 0;
+    }
+    private void txtSearchCustomer_TextChanged(object sender, EventArgs e)
+    {
+        string search = txtSearchCustomer.Text.Trim().ToLower();
+        lstCustomerResults.Items.Clear();
+
+        if (string.IsNullOrEmpty(search))
+        {
+            lstCustomerResults.Visible = false;
+            return;
+        }
+
+        List<ComboItem> matches = new List<ComboItem>();
+
+        foreach (ComboItem c in allCustomers)
+        {
+            if (c.Text.ToLower().Contains(search))
+            {
+                matches.Add(c);
+                lstCustomerResults.Items.Add(c);
+            }
+        }
+
+        lstCustomerResults.Visible = matches.Count > 0;
+
+
+    }
+
+    private void lstCustomerResults_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (lstCustomerResults.SelectedItem is ComboItem customer)
+        {
+            selectedCustomer = customer;
+            txtSearchCustomer.Text = customer.Text;
+            lstCustomerResults.Visible = false;
+
+            int customerID = customer.Value;
+            LoadQueue(customerID);
+            LoadRentedMovies(customerID);
+        }
+    }
+    private bool CopiesAvailable(int movieID)
+    {
+        myCommand.Parameters.Clear();
+        myCommand.CommandText = "SELECT NumOfCopy FROM Movie WHERE MovieID = @M";
+        myCommand.Parameters.AddWithValue("@M", movieID);
+
+        int copies = Convert.ToInt32(myCommand.ExecuteScalar());
+        return copies > 0;
     }
 
 
