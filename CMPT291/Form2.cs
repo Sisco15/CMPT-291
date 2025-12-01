@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualBasic.Devices;
+using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -689,6 +689,52 @@ public partial class Form2 : Form
         else if (month.ToLower() == "december") return 12;
         else throw new ArgumentException("Invalid month name provided.");
     }
+
+    private void button8_Click(object sender, EventArgs e)
+    {
+        if (comboBox4.SelectedItem == null)
+        {
+            MessageBox.Show("Please select a Month first.");
+            return;
+        }
+
+        myCommand.CommandText = @"
+        SELECT TOP 3 WITH TIES        
+                E.FirstName,
+                E.LastName,
+                COUNT(*) AS MoviesCount
+        FROM RentalRecord AS R
+        JOIN Employee E ON R.EmployeeID = E.EmployeeID
+        WHERE MONTH(R.CheckoutTime) = @Month
+        GROUP BY E.FirstName, E.LastName
+        ORDER BY MoviesCount DESC;";
+
+        myCommand.Parameters.Clear();
+        myCommand.Parameters.AddWithValue("@Month", monthToInt(comboBox4.SelectedItem.ToString()));
+
+        DataTable dt = new DataTable();
+        using (SqlDataAdapter adapter = new SqlDataAdapter(myCommand))
+        {
+            adapter.Fill(dt);
+        }
+
+        // Bind the DataTable to the DataGridView
+        Form popup = new Form();
+        popup.Text = "Top Employees by Month";
+        popup.Size = new Size(800, 600);
+
+        // Create DataGridView and bind
+        DataGridView dgv = new DataGridView();
+        dgv.Dock = DockStyle.Fill;
+        dgv.DataSource = dt;
+        dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+        // Add DataGridView to the form
+        popup.Controls.Add(dgv);
+
+        // Show as a modal popup
+        popup.ShowDialog();
+    }
 }
 public class ComboItem
 {
@@ -706,7 +752,6 @@ public class ComboItem
         return Text;
     }
 }
-
 
 
 
