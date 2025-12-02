@@ -140,7 +140,11 @@ public partial class Form2 : Form
                 int sortNum = Convert.ToInt32(myReader["SortNum"]);
                 int copies = Convert.ToInt32(myReader["NumOfCopy"]);
                 dgvQueue.Rows.Add(movieName, sortNum, copies);
-                cmbMovie.Items.Add(new ComboItem(movieName, movieID));
+                //cmbMovie.Items.Add(new ComboItem(movieName, movieID));
+                if (copies > 0)
+                {
+                    cmbMovie.Items.Add(new ComboItem(movieName, movieID));
+                }
             }
 
 
@@ -651,7 +655,7 @@ public partial class Form2 : Form
             FORMAT(CheckoutTime, 'yyyy-MM') AS [month],
             MovieType,
             COUNT(*) AS total_orders,
-            COUNT(*) * 15 AS total_revenue
+            SUM(M.Fee) AS total_revenue
             FROM RentalRecord AS R
             JOIN Movie AS M ON M.MovieID = R.MovieID
             WHERE R.CheckoutTime >= DATEADD(MONTH, -3, GETDATE())
@@ -807,7 +811,8 @@ public partial class Form2 : Form
     private void buttonRunReport4_Click(object sender, EventArgs e)
     {
         DateTime start = dateTimePickerStart.Value.Date;
-        DateTime end = dateTimePickerEnd.Value.Date.AddDays(1).AddTicks(-1);
+        //DateTime end = dateTimePickerEnd.Value.Date.AddDays(1).AddTicks(-1);
+        DateTime end = dateTimePickerEnd.Value.Date.AddDays(1).AddTicks(-1); // puts the time of end date to the end of the day to inlcude movies rented that day
 
         if (start > end)
         {
