@@ -140,7 +140,11 @@ public partial class Form2 : Form
                 int sortNum = Convert.ToInt32(myReader["SortNum"]);
                 int copies = Convert.ToInt32(myReader["NumOfCopy"]);
                 dgvQueue.Rows.Add(movieName, sortNum, copies);
-                cmbMovie.Items.Add(new ComboItem(movieName, movieID));
+                if (copies > 0)
+                {
+                    cmbMovie.Items.Add(new ComboItem(movieName, movieID));
+                }
+
             }
 
 
@@ -805,7 +809,7 @@ public partial class Form2 : Form
     private void buttonRunReport4_Click(object sender, EventArgs e)
     {
         DateTime start = dateTimePickerStart.Value.Date;
-        DateTime end = dateTimePickerEnd.Value.Date.AddDays(1).AddTicks(-1);
+        DateTime end = dateTimePickerEnd.Value.Date.AddDays(1).AddTicks(-1); // puts the time of end date to the end of the day to inlcude movies rented that day
 
         if (start > end)
         {
