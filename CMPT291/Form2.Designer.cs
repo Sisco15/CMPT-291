@@ -63,6 +63,10 @@ namespace CMPT291
             dataGridView1 = new DataGridView();
             button1 = new Button();
             ReportsTab = new TabPage();
+            label15 = new Label();
+            buttonRunReport4 = new Button();
+            dateTimePickerEnd = new DateTimePicker();
+            dateTimePickerStart = new DateTimePicker();
             comboBox4 = new ComboBox();
             button8 = new Button();
             label14 = new Label();
@@ -81,6 +85,8 @@ namespace CMPT291
             label7 = new Label();
             label6 = new Label();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            label16 = new Label();
+            label17 = new Label();
             ((System.ComponentModel.ISupportInitialize)CustomerList).BeginInit();
             tabs.SuspendLayout();
             Customer.SuspendLayout();
@@ -446,6 +452,12 @@ namespace CMPT291
             // 
             // ReportsTab
             // 
+            ReportsTab.Controls.Add(label17);
+            ReportsTab.Controls.Add(label16);
+            ReportsTab.Controls.Add(label15);
+            ReportsTab.Controls.Add(buttonRunReport4);
+            ReportsTab.Controls.Add(dateTimePickerEnd);
+            ReportsTab.Controls.Add(dateTimePickerStart);
             ReportsTab.Controls.Add(comboBox4);
             ReportsTab.Controls.Add(button8);
             ReportsTab.Controls.Add(label14);
@@ -471,18 +483,51 @@ namespace CMPT291
             ReportsTab.Text = "Reports";
             ReportsTab.UseVisualStyleBackColor = true;
             // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(12, 220);
+            label15.Name = "label15";
+            label15.Size = new Size(264, 15);
+            label15.TabIndex = 25;
+            label15.Text = "Movies that have not been rented in time period:";
+            // 
+            // buttonRunReport4
+            // 
+            buttonRunReport4.Location = new Point(464, 278);
+            buttonRunReport4.Name = "buttonRunReport4";
+            buttonRunReport4.Size = new Size(85, 23);
+            buttonRunReport4.TabIndex = 24;
+            buttonRunReport4.Text = "Run Report 4";
+            buttonRunReport4.UseVisualStyleBackColor = true;
+            buttonRunReport4.Click += buttonRunReport4_Click;
+            // 
+            // dateTimePickerEnd
+            // 
+            dateTimePickerEnd.Location = new Point(295, 250);
+            dateTimePickerEnd.Name = "dateTimePickerEnd";
+            dateTimePickerEnd.Size = new Size(153, 23);
+            dateTimePickerEnd.TabIndex = 23;
+            // 
+            // dateTimePickerStart
+            // 
+            dateTimePickerStart.Location = new Point(96, 250);
+            dateTimePickerStart.Name = "dateTimePickerStart";
+            dateTimePickerStart.Size = new Size(155, 23);
+            dateTimePickerStart.TabIndex = 22;
+            // 
             // comboBox4
             // 
             comboBox4.FormattingEnabled = true;
             comboBox4.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July ", "August", "September", "October", "November", "December" });
-            comboBox4.Location = new Point(348, 262);
+            comboBox4.Location = new Point(346, 353);
             comboBox4.Name = "comboBox4";
             comboBox4.Size = new Size(112, 23);
             comboBox4.TabIndex = 21;
             // 
             // button8
             // 
-            button8.Location = new Point(475, 262);
+            button8.Location = new Point(464, 353);
             button8.Name = "button8";
             button8.Size = new Size(85, 23);
             button8.TabIndex = 20;
@@ -493,7 +538,7 @@ namespace CMPT291
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(12, 266);
+            label14.Location = new Point(10, 357);
             label14.Name = "label14";
             label14.Size = new Size(330, 15);
             label14.TabIndex = 19;
@@ -503,7 +548,7 @@ namespace CMPT291
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 11F);
-            label13.Location = new Point(3, 237);
+            label13.Location = new Point(1, 328);
             label13.Name = "label13";
             label13.Size = new Size(66, 20);
             label13.TabIndex = 18;
@@ -635,6 +680,24 @@ namespace CMPT291
             label6.Text = "Report 1";
             label6.Click += label6_Click;
             // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(52, 256);
+            label16.Name = "label16";
+            label16.Size = new Size(38, 15);
+            label16.TabIndex = 26;
+            label16.Text = "From:";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(267, 256);
+            label17.Name = "label17";
+            label17.Size = new Size(22, 15);
+            label17.TabIndex = 27;
+            label17.Text = "To:";
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -715,5 +778,11 @@ namespace CMPT291
         private Label label14;
         private Label label13;
         private Label label12;
+        private Label label15;
+        private Button buttonRunReport4;
+        private DateTimePicker dateTimePickerEnd;
+        private DateTimePicker dateTimePickerStart;
+        private Label label17;
+        private Label label16;
     }
 }

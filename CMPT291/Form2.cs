@@ -188,7 +188,7 @@ public partial class Form2 : Form
             myCommand.CommandText =
                 "INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, MovieRate) " +
                 "VALUES (@Emp, @Cust, @Movie, NULL)";
-            
+
 
             myCommand.Parameters.AddWithValue("@Emp", employeeId);
             myCommand.Parameters.AddWithValue("@Cust", cust.Value);
@@ -269,6 +269,8 @@ public partial class Form2 : Form
     }
     private void txtSearchCustomer_TextChanged(object sender, EventArgs e)
     {
+        cmbMovie.Items.Clear();
+        cmbMovie.Text = "";
         string search = txtSearchCustomer.Text.Trim().ToLower();
         lstCustomerResults.Items.Clear();
 
@@ -643,7 +645,7 @@ public partial class Form2 : Form
 
 
 
-            myCommand.CommandText = @"SELECT
+        myCommand.CommandText = @"SELECT
             FORMAT(CheckoutTime, 'yyyy-MM') AS [month],
             MovieType,
             COUNT(*) AS total_orders,
@@ -799,6 +801,54 @@ public partial class Form2 : Form
         // Show as a modal popup
         popup.ShowDialog();
     }
+
+    private void buttonRunReport4_Click(object sender, EventArgs e)
+    {
+        DateTime start = dateTimePickerStart.Value.Date;
+        DateTime end = dateTimePickerEnd.Value.Date.AddDays(1).AddTicks(-1);
+
+        if (start > end)
+        {
+            MessageBox.Show("Start date must be before end date.", "Invalid Dates");
+            return;
+        }
+
+        myCommand.Parameters.Clear();
+        myCommand.CommandText = @"
+        SELECT M.MovieName, M.MovieType, M.NumOfCopy
+        FROM Movie M
+        WHERE M.MovieID NOT IN (
+            SELECT R.MovieID
+            FROM RentalRecord R
+            WHERE R.CheckoutTime >= @Start
+              AND R.CheckoutTime <= @End
+        )
+        ORDER BY M.MovieName;
+    ";
+
+        myCommand.Parameters.AddWithValue("@Start", start);
+        myCommand.Parameters.AddWithValue("@End", end);
+
+        DataTable dt = new DataTable();
+        using (SqlDataAdapter adapter = new SqlDataAdapter(myCommand))
+        {
+            adapter.Fill(dt);
+        }
+
+        // Show popup window
+        Form popup = new Form();
+        popup.Text = "Movies Not Rented in Selected Time Frame";
+        popup.Size = new Size(800, 600);
+
+        DataGridView dgv = new DataGridView();
+        dgv.Dock = DockStyle.Fill;
+        dgv.DataSource = dt;
+        dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+        popup.Controls.Add(dgv);
+        popup.ShowDialog();
+    }
+
 }
 public class ComboItem
 {
