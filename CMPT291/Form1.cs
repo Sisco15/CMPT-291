@@ -60,7 +60,7 @@ namespace CMPT291
             {
 
                 myCommand.CommandText = "select EmployeeID from user_log where username = '" + textBox1.Text + "' and pass_word = '" + ComputeMd5Hash(textBox2.Text) + "'";
-                MessageBox.Show(myCommand.CommandText);
+                //MessageBox.Show(myCommand.CommandText);
 
                 using (SqlDataReader reader = myCommand.ExecuteReader())
                 {
@@ -71,7 +71,7 @@ namespace CMPT291
                         if (reader.Read())
                         {
                             int id = reader.GetInt32(reader.GetOrdinal("EmployeeID"));
-                            MessageBox.Show(id.ToString());
+                            //MessageBox.Show(id.ToString());
                             this.Hide();
                             Form2 mainForm = new Form2(id);
                             mainForm.ShowDialog();
