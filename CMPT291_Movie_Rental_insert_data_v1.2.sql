@@ -223,6 +223,51 @@ INSERT INTO ActorRate (RentalRecordID, ActorID, ActorRate)
 		AND MovieID = (SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard')), 
 		5 )
 ;
+---------------------------------------------
+
+INSERT INTO Customer (CustomerID, LastName, FirstName, Address, City, Province,
+    PostalCode, Email, AccountNum, CreditCardNum, CreditCardExp, CreditCardCvv)
+VALUES (NEXT VALUE FOR Customer_CustomerID_Seq,
+       'Doe', 'Jane', '100 Test Street', 'Edmonton', 'AB', 'A1A1A1',
+       'jane@test.com', 'ACC100', '1111222233334444', '1227', '123');
+
+INSERT INTO CustomerPhone (CustomerID, PhoneNum, PhoneType)
+VALUES ((SELECT CustomerID FROM Customer WHERE Email='jane@test.com'),
+        '7805555555', 'Home');
+
+
+---------------------------------------------
+
+INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
+VALUES ('RentMovie', 'Action', 3.5, 5, 4);
+
+INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
+VALUES ('ZeroMovies', 'Action', 3.5, 0, 4);
+
+INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
+VALUES ('RentedMovie', 'Drama', 4.0, 1, 5);
+
+
+---------------------------------------------
+
+INSERT INTO CustomerQueue
+VALUES ((SELECT CustomerID FROM Customer WHERE Email='jane@test.com'),
+        (SELECT MovieID FROM Movie WHERE MovieName='RentMovie'),
+        1);
+
+INSERT INTO CustomerQueue
+VALUES ((SELECT CustomerID FROM Customer WHERE Email='jane@test.com'),
+        (SELECT MovieID FROM Movie WHERE MovieName='ZeroMovies'),
+        2);
+
+---------------------------------------------
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, MovieRate)
+VALUES ((SELECT EmployeeID FROM Employee WHERE SSN='111222333'),
+        (SELECT CustomerID FROM Customer WHERE Email='jane@test.com'),
+        (SELECT MovieID FROM Movie WHERE MovieName='RentedMovie'),
+        5);
+
 
 --SELECT * FROM EmployeePhone;
 --SELECT * FROM Customer;
@@ -234,6 +279,7 @@ INSERT INTO ActorRate (RentalRecordID, ActorID, ActorRate)
 --SELECT * FROM RentalRecord;
 --SELECT * FROM ActorRate;
 --SELECT * FROM User_log;
+
 
 
 
