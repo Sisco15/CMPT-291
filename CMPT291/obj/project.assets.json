@@ -172,24 +172,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\wheat\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Syed\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wheat\\Downloads\\CMPT-291-reports\\CMPT-291-reports\\CMPT291\\CMPT291.csproj",
+      "projectUniqueName": "C:\\Users\\Syed\\Desktop\\CMPT291GIT\\CMPT-291\\CMPT291\\CMPT291.csproj",
       "projectName": "CMPT291",
-      "projectPath": "C:\\Users\\wheat\\Downloads\\CMPT-291-reports\\CMPT-291-reports\\CMPT291\\CMPT291.csproj",
-      "packagesPath": "C:\\Users\\wheat\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wheat\\Downloads\\CMPT-291-reports\\CMPT-291-reports\\CMPT291\\obj\\",
+      "projectPath": "C:\\Users\\Syed\\Desktop\\CMPT291GIT\\CMPT-291\\CMPT291\\CMPT291.csproj",
+      "packagesPath": "C:\\Users\\Syed\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Syed\\Desktop\\CMPT291GIT\\CMPT-291\\CMPT291\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\wheat\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Syed\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -215,7 +210,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.300"
+      "SdkAnalysisLevel": "10.0.100"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -245,7 +240,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

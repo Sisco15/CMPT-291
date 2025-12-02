@@ -44,6 +44,8 @@ namespace CMPT291
             searchBox = new TextBox();
             modify = new Button();
             tabPage2 = new TabPage();
+            lstCustomerResults = new ListBox();
+            txtSearchCustomer = new TextBox();
             btnRent = new Button();
             label4 = new Label();
             label3 = new Label();
@@ -52,7 +54,6 @@ namespace CMPT291
             dgvRented = new DataGridView();
             dgvQueue = new DataGridView();
             cmbMovie = new ComboBox();
-            cmbCustomer = new ComboBox();
             MoviesTab = new TabPage();
             button4 = new Button();
             button3 = new Button();
@@ -62,6 +63,10 @@ namespace CMPT291
             dataGridView1 = new DataGridView();
             button1 = new Button();
             ReportsTab = new TabPage();
+            label15 = new Label();
+            buttonRunReport4 = new Button();
+            dateTimePickerEnd = new DateTimePicker();
+            dateTimePickerStart = new DateTimePicker();
             comboBox4 = new ComboBox();
             button8 = new Button();
             label14 = new Label();
@@ -80,6 +85,8 @@ namespace CMPT291
             label7 = new Label();
             label6 = new Label();
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            label16 = new Label();
+            label17 = new Label();
             ((System.ComponentModel.ISupportInitialize)CustomerList).BeginInit();
             tabs.SuspendLayout();
             Customer.SuspendLayout();
@@ -242,6 +249,8 @@ namespace CMPT291
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(lstCustomerResults);
+            tabPage2.Controls.Add(txtSearchCustomer);
             tabPage2.Controls.Add(btnRent);
             tabPage2.Controls.Add(label4);
             tabPage2.Controls.Add(label3);
@@ -250,7 +259,6 @@ namespace CMPT291
             tabPage2.Controls.Add(dgvRented);
             tabPage2.Controls.Add(dgvQueue);
             tabPage2.Controls.Add(cmbMovie);
-            tabPage2.Controls.Add(cmbCustomer);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Margin = new Padding(3, 2, 3, 2);
             tabPage2.Name = "tabPage2";
@@ -260,9 +268,28 @@ namespace CMPT291
             tabPage2.Text = "Rental";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // lstCustomerResults
+            // 
+            lstCustomerResults.FormattingEnabled = true;
+            lstCustomerResults.ItemHeight = 15;
+            lstCustomerResults.Location = new Point(0, 48);
+            lstCustomerResults.Name = "lstCustomerResults";
+            lstCustomerResults.Size = new Size(145, 379);
+            lstCustomerResults.TabIndex = 18;
+            lstCustomerResults.Visible = false;
+            lstCustomerResults.SelectedIndexChanged += lstCustomerResults_SelectedIndexChanged;
+            // 
+            // txtSearchCustomer
+            // 
+            txtSearchCustomer.Location = new Point(3, 19);
+            txtSearchCustomer.Name = "txtSearchCustomer";
+            txtSearchCustomer.Size = new Size(142, 23);
+            txtSearchCustomer.TabIndex = 17;
+            txtSearchCustomer.TextChanged += txtSearchCustomer_TextChanged;
+            // 
             // btnRent
             // 
-            btnRent.Location = new Point(505, 220);
+            btnRent.Location = new Point(606, 360);
             btnRent.Name = "btnRent";
             btnRent.Size = new Size(147, 67);
             btnRent.TabIndex = 4;
@@ -273,7 +300,7 @@ namespace CMPT291
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(384, 1);
+            label4.Location = new Point(463, 0);
             label4.Name = "label4";
             label4.Size = new Size(136, 15);
             label4.TabIndex = 16;
@@ -282,7 +309,7 @@ namespace CMPT291
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(0, 119);
+            label3.Location = new Point(169, 188);
             label3.Name = "label3";
             label3.Size = new Size(97, 15);
             label3.TabIndex = 15;
@@ -291,7 +318,7 @@ namespace CMPT291
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(0, 61);
+            label2.Location = new Point(169, 19);
             label2.Name = "label2";
             label2.Size = new Size(40, 15);
             label2.TabIndex = 14;
@@ -309,37 +336,28 @@ namespace CMPT291
             // dgvRented
             // 
             dgvRented.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvRented.Location = new Point(384, 19);
+            dgvRented.Location = new Point(463, 19);
             dgvRented.Name = "dgvRented";
             dgvRented.RowHeadersWidth = 51;
-            dgvRented.Size = new Size(290, 167);
+            dgvRented.Size = new Size(290, 213);
             dgvRented.TabIndex = 12;
             // 
             // dgvQueue
             // 
             dgvQueue.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvQueue.Location = new Point(0, 137);
+            dgvQueue.Location = new Point(169, 206);
             dgvQueue.Name = "dgvQueue";
             dgvQueue.RowHeadersWidth = 51;
-            dgvQueue.Size = new Size(315, 167);
+            dgvQueue.Size = new Size(288, 221);
             dgvQueue.TabIndex = 11;
             // 
             // cmbMovie
             // 
             cmbMovie.FormattingEnabled = true;
-            cmbMovie.Location = new Point(0, 79);
+            cmbMovie.Location = new Point(169, 37);
             cmbMovie.Name = "cmbMovie";
             cmbMovie.Size = new Size(103, 23);
             cmbMovie.TabIndex = 10;
-            // 
-            // cmbCustomer
-            // 
-            cmbCustomer.FormattingEnabled = true;
-            cmbCustomer.Location = new Point(0, 19);
-            cmbCustomer.Name = "cmbCustomer";
-            cmbCustomer.Size = new Size(103, 23);
-            cmbCustomer.TabIndex = 9;
-            cmbCustomer.SelectedIndexChanged += cmbCustomer_SelectedIndexChanged;
             // 
             // MoviesTab
             // 
@@ -434,6 +452,12 @@ namespace CMPT291
             // 
             // ReportsTab
             // 
+            ReportsTab.Controls.Add(label17);
+            ReportsTab.Controls.Add(label16);
+            ReportsTab.Controls.Add(label15);
+            ReportsTab.Controls.Add(buttonRunReport4);
+            ReportsTab.Controls.Add(dateTimePickerEnd);
+            ReportsTab.Controls.Add(dateTimePickerStart);
             ReportsTab.Controls.Add(comboBox4);
             ReportsTab.Controls.Add(button8);
             ReportsTab.Controls.Add(label14);
@@ -459,18 +483,51 @@ namespace CMPT291
             ReportsTab.Text = "Reports";
             ReportsTab.UseVisualStyleBackColor = true;
             // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(12, 220);
+            label15.Name = "label15";
+            label15.Size = new Size(264, 15);
+            label15.TabIndex = 25;
+            label15.Text = "Movies that have not been rented in time period:";
+            // 
+            // buttonRunReport4
+            // 
+            buttonRunReport4.Location = new Point(464, 278);
+            buttonRunReport4.Name = "buttonRunReport4";
+            buttonRunReport4.Size = new Size(85, 23);
+            buttonRunReport4.TabIndex = 24;
+            buttonRunReport4.Text = "Run Report 4";
+            buttonRunReport4.UseVisualStyleBackColor = true;
+            buttonRunReport4.Click += buttonRunReport4_Click;
+            // 
+            // dateTimePickerEnd
+            // 
+            dateTimePickerEnd.Location = new Point(295, 250);
+            dateTimePickerEnd.Name = "dateTimePickerEnd";
+            dateTimePickerEnd.Size = new Size(153, 23);
+            dateTimePickerEnd.TabIndex = 23;
+            // 
+            // dateTimePickerStart
+            // 
+            dateTimePickerStart.Location = new Point(96, 250);
+            dateTimePickerStart.Name = "dateTimePickerStart";
+            dateTimePickerStart.Size = new Size(155, 23);
+            dateTimePickerStart.TabIndex = 22;
+            // 
             // comboBox4
             // 
             comboBox4.FormattingEnabled = true;
             comboBox4.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July ", "August", "September", "October", "November", "December" });
-            comboBox4.Location = new Point(348, 262);
+            comboBox4.Location = new Point(346, 353);
             comboBox4.Name = "comboBox4";
             comboBox4.Size = new Size(112, 23);
             comboBox4.TabIndex = 21;
             // 
             // button8
             // 
-            button8.Location = new Point(475, 262);
+            button8.Location = new Point(464, 353);
             button8.Name = "button8";
             button8.Size = new Size(85, 23);
             button8.TabIndex = 20;
@@ -481,7 +538,7 @@ namespace CMPT291
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(12, 266);
+            label14.Location = new Point(10, 357);
             label14.Name = "label14";
             label14.Size = new Size(330, 15);
             label14.TabIndex = 19;
@@ -491,7 +548,7 @@ namespace CMPT291
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI", 11F);
-            label13.Location = new Point(3, 237);
+            label13.Location = new Point(1, 328);
             label13.Name = "label13";
             label13.Size = new Size(66, 20);
             label13.TabIndex = 18;
@@ -608,7 +665,7 @@ namespace CMPT291
             label7.AutoSize = true;
             label7.Location = new Point(12, 46);
             label7.Name = "label7";
-            label7.Size = new Size(276, 15);
+            label7.Size = new Size(275, 15);
             label7.TabIndex = 1;
             label7.Text = "Top rated movies by genre of movie for the quarter";
             // 
@@ -622,6 +679,24 @@ namespace CMPT291
             label6.TabIndex = 0;
             label6.Text = "Report 1";
             label6.Click += label6_Click;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(52, 256);
+            label16.Name = "label16";
+            label16.Size = new Size(38, 15);
+            label16.TabIndex = 26;
+            label16.Text = "From:";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(267, 256);
+            label17.Name = "label17";
+            label17.Size = new Size(22, 15);
+            label17.TabIndex = 27;
+            label17.Text = "To:";
             // 
             // Form2
             // 
@@ -674,7 +749,6 @@ namespace CMPT291
         private DataGridView dgvRented;
         private DataGridView dgvQueue;
         private ComboBox cmbMovie;
-        private ComboBox cmbCustomer;
         private Button btnRent;
         private TabPage MoviesTab;
         private TabPage ReportsTab;
@@ -697,10 +771,18 @@ namespace CMPT291
         private ComboBox comboBox3;
         private Label label10;
         private Label label11;
+        private ListBox lstCustomerResults;
+        private TextBox txtSearchCustomer;
         private ComboBox comboBox4;
         private Button button8;
         private Label label14;
         private Label label13;
         private Label label12;
+        private Label label15;
+        private Button buttonRunReport4;
+        private DateTimePicker dateTimePickerEnd;
+        private DateTimePicker dateTimePickerStart;
+        private Label label17;
+        private Label label16;
     }
 }
