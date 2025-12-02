@@ -653,7 +653,7 @@ public partial class Form2 : Form
             FORMAT(CheckoutTime, 'yyyy-MM') AS [month],
             MovieType,
             COUNT(*) AS total_orders,
-            COUNT(*) * 15 AS total_revenue
+            SUM(M.Fee) AS total_revenue
             FROM RentalRecord AS R
             JOIN Movie AS M ON M.MovieID = R.MovieID
             WHERE R.CheckoutTime >= DATEADD(MONTH, -3, GETDATE())
@@ -870,6 +870,7 @@ public class ComboItem
         return Text;
     }
 }
+
 
 
 
