@@ -178,6 +178,35 @@ INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, MovieRate)
 		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
 		(SELECT MovieID FROM Movie WHERE MovieName = 'Boom'), 4 )
 
+
+		-- Rental Records----------
+		INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard 3'), 
+		'2025-7-19 21:42:14.38',3 )
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust2@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard 3'), 
+		'2025-7-19 21:42:14.38',3 )
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust3@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard 3'), 
+		'2025-7-19 21:42:14.38',3 )
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust2@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard 3'), 
+		'2025-7-19 21:42:14.38',3 )
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust4@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard 3'), 
+		'2025-7-19 21:42:14.38',3 )
+
+
 INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
 	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
 		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
