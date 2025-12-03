@@ -380,6 +380,11 @@ VALUES ('ZeroMovies', 'Action', 3.5, 0, 4);
 INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
 VALUES ('RentedMovie', 'Drama', 4.0, 1, 5);
 
+INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
+VALUES ('Rented3MonthsAgoMovie', 'Action', 3.5, 5, 4);
+
+INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
+VALUES ('Rented6MonthsAgoMovie', 'Action', 3.5, 5, 4);
 
 ---------------------------------------------
 
@@ -401,6 +406,18 @@ VALUES ((SELECT EmployeeID FROM Employee WHERE SSN='111222333'),
         (SELECT MovieID FROM Movie WHERE MovieName='RentedMovie'),
         5);
 
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Rented3MonthsAgoMovie'), 
+		'2025-9-03 21:42:14.38',3 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Rented6MonthsAgoMovie'), 
+		'2025-6-03 21:42:14.38',3 )
+
 
 --SELECT * FROM EmployeePhone;
 --SELECT * FROM Customer;
@@ -412,6 +429,7 @@ VALUES ((SELECT EmployeeID FROM Employee WHERE SSN='111222333'),
 --SELECT * FROM RentalRecord;
 --SELECT * FROM ActorRate;
 --SELECT * FROM User_log;
+
 
 
 
