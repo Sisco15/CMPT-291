@@ -66,22 +66,25 @@ namespace CMPT291
         {
             try
             {
-                myCommand.CommandText = "UPDATE MOVIE SET MovieName = '" + tbName.Text + "', " +
-                    "MovieType = '" + tbType.Text + "', " +
-                    "Fee = " + tbFee.Text + ", " +
-                    "NumOfCopy = " + tbCopy.Text + " " +
-                    "Movie Rating = " + tbRate.Text + " " +
-                    "WHERE MovieID = " + movieID;
+                myCommand.CommandText = "UPDATE Movie SET " +
+
+                    "MovieName = @MovieName, " +
+                    "MovieType = @MovieType, " +
+                    "Fee = @Fee, " +
+                    "NumOfCopy = @NumOfCopy, " +
+                    "MovieAveRate = @MovieAveRate " +
+                    "WHERE MovieID = @MovieID";
 
                 myCommand.Parameters.AddWithValue("@MovieName", tbName.Text);
                 myCommand.Parameters.AddWithValue("@MovieType", tbType.Text);
                 myCommand.Parameters.AddWithValue("@Fee", tbFee.Text);
                 myCommand.Parameters.AddWithValue("@NumOfCopy", tbCopy.Text);
                 myCommand.Parameters.AddWithValue("@MovieAveRate", tbRate.Text);
+                myCommand.Parameters.AddWithValue("@MovieID", movieID);
 
-                MessageBox.Show(myCommand.CommandText);
+                //MessageBox.Show(myCommand.CommandText);
                 myCommand.ExecuteNonQuery();
-
+                
                 this.Close();
             }
             catch (Exception e1)

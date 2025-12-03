@@ -181,7 +181,7 @@ namespace CMPT291
             Customer.Controls.Add(CustomerList);
             Customer.Location = new Point(4, 29);
             Customer.Name = "Customer";
-            Customer.Padding = new Padding(3, 3, 3, 3);
+            Customer.Padding = new Padding(3);
             Customer.Size = new Size(936, 608);
             Customer.TabIndex = 0;
             Customer.Text = "Customers";
@@ -253,7 +253,7 @@ namespace CMPT291
             tabPage2.Controls.Add(cmbMovie);
             tabPage2.Location = new Point(4, 29);
             tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3, 3, 3, 3);
+            tabPage2.Padding = new Padding(3);
             tabPage2.Size = new Size(936, 608);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Rental";
@@ -537,7 +537,7 @@ namespace CMPT291
             // 
             comboBox4.FormattingEnabled = true;
             comboBox4.Items.AddRange(new object[] { "January", "February", "March", "April", "May", "June", "July ", "August", "September", "October", "November", "December" });
-            comboBox4.Location = new Point(395, 471);
+            comboBox4.Location = new Point(421, 471);
             comboBox4.Margin = new Padding(3, 4, 3, 4);
             comboBox4.Name = "comboBox4";
             comboBox4.Size = new Size(127, 28);
@@ -545,7 +545,7 @@ namespace CMPT291
             // 
             // button8
             // 
-            button8.Location = new Point(530, 471);
+            button8.Location = new Point(556, 471);
             button8.Margin = new Padding(3, 4, 3, 4);
             button8.Name = "button8";
             button8.Size = new Size(97, 31);

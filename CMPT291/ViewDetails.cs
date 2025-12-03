@@ -49,7 +49,7 @@ namespace CMPT291
 
         private void loadDetails(int MovieID, string name, string type, string fee, string copies, string rating)
         {
-            lbID.Text = MovieID.ToString();
+            //lbID.Text = MovieID.ToString();
             lbName.Text = name;
             lbType.Text = type;
             movieFee.Text = fee;

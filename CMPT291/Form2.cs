@@ -540,19 +540,25 @@ public partial class Form2 : Form
     private void button3_Click(object sender, EventArgs e)
     {
 
+        if (dataGridView1.SelectedRows.Count > 0)
+        {
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
 
-        DataGridViewRow row = dataGridView1.SelectedRows[0];
+            int id = Convert.ToInt32(row.Cells["MovieID"].Value);
+            string name = row.Cells["MovieName"].Value.ToString();
+            string type = row.Cells["MovieType"].Value.ToString();
+            string fee = row.Cells["Fee"].Value.ToString();
+            string copies = row.Cells["NumOfCopy"].Value.ToString();
+            string rating = row.Cells["MovieAveRate"].Value.ToString();
 
-        int id = Convert.ToInt32(row.Cells["MovieID"].Value);
-        string name = row.Cells["MovieName"].Value.ToString();
-        string type = row.Cells["MovieType"].Value.ToString();
-        string fee = row.Cells["Fee"].Value.ToString();
-        string copies = row.Cells["NumOfCopy"].Value.ToString();
-        string rating = row.Cells["MovieAveRate"].Value.ToString();
+            Update updateForm = new Update(id, name, type, fee, copies, rating);
 
-        Update updateForm = new Update(id, name, type, fee, copies, rating);
-
-        updateForm.ShowDialog();
+            updateForm.ShowDialog();
+        }
+        else
+        {
+            MessageBox.Show("No Row Selected", "Error Editing");
+        }
     }
 
     private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -604,7 +610,7 @@ public partial class Form2 : Form
         FROM RentalRecord AS R
         JOIN Movie AS M ON M.MovieID = R.MovieID
         WHERE R.CheckoutTime >= DATEADD(MONTH, -3, GETDATE()) AND M.MovieType = @Genre)
-        SELECT MovieName, Top3, MovieAveRate, MovieType
+        SELECT DISTINCT MovieName, Top3, MovieAveRate, MovieType
         FROM RankedMovies
         WHERE Top3 <= 3
         ORDER BY MovieType, MovieAveRate DESC;";

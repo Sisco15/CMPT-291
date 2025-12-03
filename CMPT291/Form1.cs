@@ -66,7 +66,7 @@ namespace CMPT291
                 {
                     if (reader.HasRows)
                     {
-                        MessageBox.Show("Login Succsess");
+                        MessageBox.Show("Login Success");
                         
                         if (reader.Read())
                         {
