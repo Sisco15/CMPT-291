@@ -19,7 +19,7 @@ namespace CMPT291
         public SqlDataReader myReader;
         private int movieID;
 
-        public ViewDetails(int MovieID, string name, string type, string fee, string copies)
+        public ViewDetails(int MovieID, string name, string type, string fee, string copies, string rating)
         {
             InitializeComponent();
             this.movieID = MovieID;
@@ -36,7 +36,7 @@ namespace CMPT291
                 myCommand = new SqlCommand();
                 myCommand.Connection = connection; // Link the command stream to the connection
 
-                loadDetails(MovieID, name, type, fee, copies);
+                loadDetails(MovieID, name, type, fee, copies, rating);
                 loadActors();
 
             }
@@ -47,13 +47,14 @@ namespace CMPT291
             }
         }
 
-        private void loadDetails(int MovieID, string name, string type, string fee, string copies)
+        private void loadDetails(int MovieID, string name, string type, string fee, string copies, string rating)
         {
             lbID.Text = MovieID.ToString();
             lbName.Text = name;
             lbType.Text = type;
             movieFee.Text = fee;
             lbCopy.Text = copies;
+            lbRating.Text = rating;
         }
 
         private void loadActors()
@@ -100,4 +101,5 @@ namespace CMPT291
         }
     }
 }
+
 
