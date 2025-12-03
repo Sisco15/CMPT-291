@@ -119,8 +119,8 @@ INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
 INSERT INTO Actor (Name, Gender, DateOfBrith)
 	VALUES ( 'Bruce Wills', 'M', '1955-03-19' )
 
-INSERT INTO Actor (Name, Gender, DateOfBrith)
-	VALUES ( 'Bruce Wills', 'M', '1955-03-19' )
+--INSERT INTO Actor (Name, Gender, DateOfBrith)
+--	VALUES ( 'Bruce Wills', 'M', '1955-03-19' )
 
 INSERT INTO Actor (Name, Gender, DateOfBrith)
 	VALUES ( 'Tom Cruise', 'M', '1962-07-03' )
