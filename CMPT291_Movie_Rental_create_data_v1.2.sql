@@ -58,7 +58,7 @@ PhoneType VARCHAR(10) NOT NULL,
 StartTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 EndTime DATETIME,
 PRIMARY KEY( EmployeeID, PhoneNum, StartTime ),
-FOREIGN KEY ( EmployeeID ) REFERENCES Employee( EmployeeID ),
+FOREIGN KEY ( EmployeeID ) REFERENCES Employee( EmployeeID ) ON DELETE CASCADE,
 CONSTRAINT EmpPhonePeriod CHECK (StartTime < EndTime)
 );
 
@@ -89,7 +89,7 @@ PhoneType VARCHAR(10) NOT NULL,
 StartTime DATETIME NOT NULL DEFAULT(getdate()),
 EndTime DATETIME,
 PRIMARY KEY( CustomerID, PhoneNum, StartTime ),
-FOREIGN KEY ( CustomerID ) REFERENCES Customer( CustomerID ),
+FOREIGN KEY ( CustomerID ) REFERENCES Customer( CustomerID )ON DELETE CASCADE,
 CONSTRAINT CustPhonePeriod CHECK (StartTime < EndTime)
 );
 
@@ -112,8 +112,8 @@ MovieID INT NOT NULL,
 SortNum INT NOT NULL,
 PRIMARY KEY ( CustomerID, MovieID ),
 UNIQUE ( CustomerID, SortNum ),
-FOREIGN KEY ( CustomerID ) REFERENCES Customer( CustomerID ),
-FOREIGN KEY ( MovieID ) REFERENCES Movie( MovieID )
+FOREIGN KEY ( CustomerID ) REFERENCES Customer( CustomerID ) ON DELETE CASCADE,
+FOREIGN KEY ( MovieID ) REFERENCES Movie( MovieID ) ON DELETE CASCADE
 );
 
 
@@ -130,8 +130,8 @@ CREATE TABLE ActorAppear (
 MovieID INT NOT NULL,
 ActorID INT NOT NULL,
 PRIMARY KEY ( MovieID, ActorID ),
-FOREIGN KEY ( MovieID ) REFERENCES Movie( MovieID ),
-FOREIGN KEY ( ActorID ) REFERENCES Actor( ActorID )
+FOREIGN KEY ( MovieID ) REFERENCES Movie( MovieID ) ON DELETE CASCADE,
+FOREIGN KEY ( ActorID ) REFERENCES Actor( ActorID ) ON DELETE CASCADE
 );
 
 
@@ -145,9 +145,9 @@ CheckoutTime DATETIME NOT NULL DEFAULT(getdate()),
 ReturnTime DATETIME,
 MovieRate INT,
 PRIMARY KEY( RentalRecordID ),
-FOREIGN KEY ( EmployeeID ) REFERENCES Employee( EmployeeID ),
-FOREIGN KEY ( CustomerID ) REFERENCES Customer( CustomerID ),
-FOREIGN KEY ( MovieID ) REFERENCES Movie( MovieID )
+FOREIGN KEY ( EmployeeID ) REFERENCES Employee( EmployeeID ) ON DELETE CASCADE,
+FOREIGN KEY ( CustomerID ) REFERENCES Customer( CustomerID ) ON DELETE CASCADE,
+FOREIGN KEY ( MovieID ) REFERENCES Movie( MovieID ) ON DELETE CASCADE
 );
 
 
@@ -155,8 +155,8 @@ CREATE TABLE ActorRate (
 RentalRecordID INT NOT NULL,
 ActorID INT NOT Null,
 ActorRate INT,
-FOREIGN KEY ( RentalRecordID ) REFERENCES RentalRecord( RentalRecordID ),
-FOREIGN KEY ( ActorID ) REFERENCES Actor( ActorID )
+FOREIGN KEY ( RentalRecordID ) REFERENCES RentalRecord( RentalRecordID ) ON DELETE CASCADE,
+FOREIGN KEY ( ActorID ) REFERENCES Actor( ActorID ) ON DELETE CASCADE
 );
 
 
