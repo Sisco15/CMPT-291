@@ -548,8 +548,9 @@ public partial class Form2 : Form
         string type = row.Cells["MovieType"].Value.ToString();
         string fee = row.Cells["Fee"].Value.ToString();
         string copies = row.Cells["NumOfCopy"].Value.ToString();
+        string rating = row.Cells["MovieAveRate"].Value.ToString();
 
-        Update updateForm = new Update(id, name, type, fee, copies);
+        Update updateForm = new Update(id, name, type, fee, copies, rating);
 
         updateForm.ShowDialog();
     }
@@ -565,8 +566,9 @@ public partial class Form2 : Form
             string type = row.Cells["MovieType"].Value.ToString();
             string fee = row.Cells["Fee"].Value.ToString();
             string copies = row.Cells["NumOfCopy"].Value.ToString();
+            string rating = row.Cells["MovieAveRate"].Value.ToString();
 
-            ViewDetails viewForm = new ViewDetails(id, name, type, fee, copies);
+            ViewDetails viewForm = new ViewDetails(id, name, type, fee, copies, rating);
             viewForm.ShowDialog();
         }
     }
@@ -873,6 +875,7 @@ public class ComboItem
         return Text;
     }
 }
+
 
 
 
