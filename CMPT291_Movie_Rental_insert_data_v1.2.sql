@@ -38,6 +38,26 @@ INSERT INTO EmployeePhone (EmployeeID, PhoneNum, PhoneType)
 	VALUES( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
 		'7807654321', 'Home' );
 
+INSERT INTO User_log (EmployeeID, username, pass_word, SSN)
+	VALUES (NEXT VALUE FOR Employee_EmployeeID_Seq, 'Logan', '81dc9bdb52d04dc20036dbd8313ed055', '222333444');
+
+INSERT INTO Employee (EmployeeID, SSN, LastName, FirstName, StartDate)
+	VALUES ((select EmployeeID from User_log where SSN = '222333444' and username = 'Logan' ), '222333444', 'Lopez', 'Logan', '2024-03-29');
+
+INSERT INTO EmployeePhone (EmployeeID, PhoneNum, PhoneType)
+	VALUES( (SELECT EmployeeID FROM Employee WHERE SSN = '222333444'),
+		'7803647392', 'Phone' );
+
+INSERT INTO User_log (EmployeeID, username, pass_word, SSN)
+	VALUES (NEXT VALUE FOR Employee_EmployeeID_Seq, 'Will', '81dc9bdb52d04dc20036dbd8313ed055', '999222111');
+
+INSERT INTO Employee (EmployeeID, SSN, LastName, FirstName, StartDate)
+	VALUES ((select EmployeeID from User_log where SSN = '999222111' and username = 'Will' ), '999222111', 'Hutcherson', 'Will', '2023-12-29');
+
+INSERT INTO EmployeePhone (EmployeeID, PhoneNum, PhoneType)
+	VALUES( (SELECT EmployeeID FROM Employee WHERE SSN = '999222111'),
+		'7800926293', 'Home' );
+
 INSERT INTO Customer (CustomerID, LastName, FirstName, Address, City, Province, 
 		PostalCode, Email, AccountNum, CreditCardNum, CreditCardExp, CreditCardCvv)
 	VALUES ( NEXT VALUE FOR Customer_CustomerID_Seq, 'Customer1', 'Last1', 
@@ -98,6 +118,24 @@ INSERT INTO Movie (MovieName, MovieType, Fee, NumOfCopy, MovieAveRate)
 
 INSERT INTO Actor (Name, Gender, DateOfBrith)
 	VALUES ( 'Bruce Wills', 'M', '1955-03-19' )
+
+INSERT INTO Actor (Name, Gender, DateOfBrith)
+	VALUES ( 'Bruce Wills', 'M', '1955-03-19' )
+
+INSERT INTO Actor (Name, Gender, DateOfBrith)
+	VALUES ( 'Tom Cruise', 'M', '1962-07-03' )
+
+INSERT INTO Actor (Name, Gender, DateOfBrith)
+	VALUES ( 'Jennifer Lawrence', 'F', '1990-08-15' )
+
+INSERT INTO Actor (Name, Gender, DateOfBrith)
+	VALUES ( 'Brad Pitt', 'M', '1963-12-18' )
+
+INSERT INTO Actor (Name, Gender, DateOfBrith)
+	VALUES ( 'Emma Stone', 'F', '1983-11-06' )
+
+INSERT INTO Actor (Name, Gender, DateOfBrith)
+	VALUES ( 'Michael Douglas', 'M', '1944-10-25' )
 
 INSERT INTO ActorAppear 
 	VALUES ( (SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard'),
@@ -230,10 +268,76 @@ INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRat
 		'2025-10-19 21:42:14.38',3 )
 
 INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
-	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '111222333'),
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '999222111'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard 3'), 
+		'2025-10-09 03:42:14.38',2 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '222333444'),
 		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
 		(SELECT MovieID FROM Movie WHERE MovieName = 'Blowup'), 
-		'2025-9-19 21:42:14.38',3 )
+		'2025-10-02 10:42:14.38',3 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '999222111'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust2@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard 2'), 
+		'2025-10-11 12:42:14.38',3 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '999222111'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust2@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard'), 
+		'2025-10-11 12:42:14.38',4 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '999222111'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard'), 
+		'2025-10-11 12:42:14.38',4 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '222333444'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Blowup'), 
+		'2025-10-19 21:42:14.38',3 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '999222111'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard 3'), 
+		'2025-12-09 03:42:14.38',2 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '222333444'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Blowup'), 
+		'2025-12-02 10:42:14.38',3 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '999222111'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust2@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard 2'), 
+		'2025-12-11 12:42:14.38',3 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '999222111'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust2@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard'), 
+		'2025-12-11 12:42:14.38',4 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '999222111'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Die Hard'), 
+		'2025-12-11 12:42:14.38',4 )
+
+INSERT INTO RentalRecord (EmployeeID, CustomerID, MovieID, CheckoutTime,MovieRate)
+	VALUES ( (SELECT EmployeeID FROM Employee WHERE SSN = '222333444'),
+		(SELECT CustomerID FROM Customer WHERE Email = 'cust1@gmail.com'),
+		(SELECT MovieID FROM Movie WHERE MovieName = 'Blowup'), 
+		'2025-12-19 21:42:14.38',3 )
 
 --INSERT INTO ActorRate (RentalRecordID, ActorID, ActorRate)
 --	VALUES ( (SELECT RentalRecordID FROM RentalRecord
@@ -308,6 +412,7 @@ VALUES ((SELECT EmployeeID FROM Employee WHERE SSN='111222333'),
 --SELECT * FROM RentalRecord;
 --SELECT * FROM ActorRate;
 --SELECT * FROM User_log;
+
 
 
 
