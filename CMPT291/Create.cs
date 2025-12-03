@@ -46,7 +46,8 @@ namespace CMPT291
             try
             {
 
-                myCommand.CommandText = "INSERT into MOVIE values ('" + tbName.Text + "'" + ", '" + tbType.Text + "', " + tbFee.Text + ", " + tbCopy.Text + ")";
+                myCommand.CommandText = "INSERT into MOVIE values ('" + tbName.Text + "'" + ", '" + tbType.Text + "', " + tbFee.Text 
+                    + ", " + tbCopy.Text + ", " + tbRate.Text + ")";
                 MessageBox.Show("Movie successfully added.");
 
                 myCommand.ExecuteNonQuery();
@@ -65,3 +66,4 @@ namespace CMPT291
     }
 
 }
+
