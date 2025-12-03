@@ -1,4 +1,4 @@
-﻿namespace CMPT291
+namespace CMPT291
 {
     partial class Create
     {
@@ -38,15 +38,17 @@
             lbFee = new Label();
             lbMovieType = new Label();
             lbMovieName = new Label();
-            lbMovieID = new Label();
             lbTitle = new Label();
+            label1 = new Label();
+            tbRate = new TextBox();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(597, 376);
+            button1.Location = new Point(418, 226);
+            button1.Margin = new Padding(2, 2, 2, 2);
             button1.Name = "button1";
-            button1.Size = new Size(111, 33);
+            button1.Size = new Size(78, 20);
             button1.TabIndex = 23;
             button1.Text = "Cancel";
             button1.UseVisualStyleBackColor = true;
@@ -54,9 +56,10 @@
             // 
             // bAdd
             // 
-            bAdd.Location = new Point(468, 376);
+            bAdd.Location = new Point(328, 226);
+            bAdd.Margin = new Padding(2, 2, 2, 2);
             bAdd.Name = "bAdd";
-            bAdd.Size = new Size(111, 33);
+            bAdd.Size = new Size(78, 20);
             bAdd.TabIndex = 22;
             bAdd.Text = "Add Movie";
             bAdd.UseVisualStyleBackColor = true;
@@ -64,91 +67,111 @@
             // 
             // tbCopy
             // 
-            tbCopy.Location = new Point(253, 254);
+            tbCopy.Location = new Point(177, 152);
+            tbCopy.Margin = new Padding(2, 2, 2, 2);
             tbCopy.Name = "tbCopy";
-            tbCopy.Size = new Size(454, 31);
+            tbCopy.Size = new Size(319, 23);
             tbCopy.TabIndex = 21;
             // 
             // tbFee
             // 
-            tbFee.Location = new Point(253, 199);
+            tbFee.Location = new Point(177, 119);
+            tbFee.Margin = new Padding(2, 2, 2, 2);
             tbFee.Name = "tbFee";
-            tbFee.Size = new Size(454, 31);
+            tbFee.Size = new Size(319, 23);
             tbFee.TabIndex = 20;
             // 
             // tbType
             // 
-            tbType.Location = new Point(253, 149);
+            tbType.Location = new Point(177, 89);
+            tbType.Margin = new Padding(2, 2, 2, 2);
             tbType.Name = "tbType";
-            tbType.Size = new Size(453, 31);
+            tbType.Size = new Size(318, 23);
             tbType.TabIndex = 19;
             // 
             // tbName
             // 
-            tbName.Location = new Point(253, 97);
+            tbName.Location = new Point(177, 58);
+            tbName.Margin = new Padding(2, 2, 2, 2);
             tbName.Name = "tbName";
-            tbName.Size = new Size(454, 31);
+            tbName.Size = new Size(319, 23);
             tbName.TabIndex = 18;
             // 
             // lbNumOfCpy
             // 
             lbNumOfCpy.AutoSize = true;
-            lbNumOfCpy.Location = new Point(45, 254);
+            lbNumOfCpy.Location = new Point(32, 152);
+            lbNumOfCpy.Margin = new Padding(2, 0, 2, 0);
             lbNumOfCpy.Name = "lbNumOfCpy";
-            lbNumOfCpy.Size = new Size(146, 25);
+            lbNumOfCpy.Size = new Size(96, 15);
             lbNumOfCpy.TabIndex = 17;
             lbNumOfCpy.Text = "Number of Copy";
             // 
             // lbFee
             // 
             lbFee.AutoSize = true;
-            lbFee.Location = new Point(45, 212);
+            lbFee.Location = new Point(32, 127);
+            lbFee.Margin = new Padding(2, 0, 2, 0);
             lbFee.Name = "lbFee";
-            lbFee.Size = new Size(39, 25);
+            lbFee.Size = new Size(25, 15);
             lbFee.TabIndex = 16;
             lbFee.Text = "Fee";
             // 
             // lbMovieType
             // 
             lbMovieType.AutoSize = true;
-            lbMovieType.Location = new Point(45, 162);
+            lbMovieType.Location = new Point(32, 97);
+            lbMovieType.Margin = new Padding(2, 0, 2, 0);
             lbMovieType.Name = "lbMovieType";
-            lbMovieType.Size = new Size(103, 25);
+            lbMovieType.Size = new Size(68, 15);
             lbMovieType.TabIndex = 15;
             lbMovieType.Text = "Movie Type";
             // 
             // lbMovieName
             // 
             lbMovieName.AutoSize = true;
-            lbMovieName.Location = new Point(45, 111);
+            lbMovieName.Location = new Point(32, 67);
+            lbMovieName.Margin = new Padding(2, 0, 2, 0);
             lbMovieName.Name = "lbMovieName";
-            lbMovieName.Size = new Size(113, 25);
+            lbMovieName.Size = new Size(75, 15);
             lbMovieName.TabIndex = 14;
             lbMovieName.Text = "Movie Name";
-            // 
-            // lbMovieID
-            // 
-            lbMovieID.AutoSize = true;
-            lbMovieID.Location = new Point(45, 64);
-            lbMovieID.Name = "lbMovieID";
-            lbMovieID.Size = new Size(84, 25);
-            lbMovieID.TabIndex = 13;
-            lbMovieID.Text = "Movie ID";
             // 
             // lbTitle
             // 
             lbTitle.AutoSize = true;
-            lbTitle.Location = new Point(45, 24);
+            lbTitle.Location = new Point(32, 14);
+            lbTitle.Margin = new Padding(2, 0, 2, 0);
             lbTitle.Name = "lbTitle";
-            lbTitle.Size = new Size(100, 25);
+            lbTitle.Size = new Size(65, 15);
             lbTitle.TabIndex = 12;
             lbTitle.Text = "Add Movie";
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(32, 190);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(87, 15);
+            label1.TabIndex = 24;
+            label1.Text = "Average Rating";
+            // 
+            // tbRate
+            // 
+            tbRate.Location = new Point(177, 187);
+            tbRate.Margin = new Padding(2);
+            tbRate.Name = "tbRate";
+            tbRate.Size = new Size(319, 23);
+            tbRate.TabIndex = 25;
+            // 
             // Create
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(560, 270);
+            Controls.Add(tbRate);
+            Controls.Add(label1);
             Controls.Add(button1);
             Controls.Add(bAdd);
             Controls.Add(tbCopy);
@@ -159,8 +182,8 @@
             Controls.Add(lbFee);
             Controls.Add(lbMovieType);
             Controls.Add(lbMovieName);
-            Controls.Add(lbMovieID);
             Controls.Add(lbTitle);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "Create";
             Text = "Create";
             ResumeLayout(false);
@@ -179,7 +202,8 @@
         private Label lbFee;
         private Label lbMovieType;
         private Label lbMovieName;
-        private Label lbMovieID;
         private Label lbTitle;
+        private Label label1;
+        private TextBox tbRate;
     }
 }
